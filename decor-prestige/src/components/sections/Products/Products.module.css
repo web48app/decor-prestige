@@ -96,7 +96,7 @@
 .imageWrap {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   background: var(--color-bg-secondary);
 }
