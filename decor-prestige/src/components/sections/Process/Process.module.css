@@ -33,7 +33,7 @@
 /* ---- Kwiatek ---- */
 .flower {
   position: absolute;
-  bottom: 0;
+  bottom: -60px;
   left: clamp(-10px, -0.5vw, 0px);
   width: clamp(420px, 55vw, 780px);
   /* dół przyklejony do sekcji, góra gałązek wychodzi powyżej */
