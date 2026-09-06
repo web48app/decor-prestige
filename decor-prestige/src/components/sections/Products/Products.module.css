@@ -98,7 +98,7 @@
 .imageWrap {
   position: relative;
   width: 100%;
-  aspect-ratio: 2 / 3;
+  aspect-ratio: 3 / 4;
   overflow: hidden;
   background: var(--color-bg-secondary);
   border-radius: var(--radius-medium);
