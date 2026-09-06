@@ -19,7 +19,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: right center;
+  object-position: 60% center;
   display: block;
   z-index: 0;
 }
@@ -48,15 +48,15 @@
 .textCol {
   display: flex;
   flex-direction: column;
-  padding: clamp(6rem, 10vw, 9rem) clamp(var(--container-padding), 6vw, 6rem) var(--space-12);
-  max-width: 560px;
+  padding: clamp(7rem, 11vw, 10rem) clamp(var(--container-padding), 7vw, 7rem) var(--space-12);
+  max-width: 600px;
 }
 
 .eyebrow {
   font-family: var(--font-body);
   font-size: var(--font-size-xs);
   font-weight: 500;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-accent);
   margin-bottom: var(--space-6);
@@ -64,12 +64,12 @@
 
 .heading {
   font-family: var(--font-heading);
-  font-size: clamp(2.6rem, 5vw, 4.2rem);
+  font-size: clamp(3rem, 5.5vw, 5rem);
   font-weight: 300;
-  line-height: 1.08;
+  line-height: 1.06;
   letter-spacing: -0.02em;
   color: var(--color-text);
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-7);
   font-style: normal;
 }
 
@@ -83,14 +83,14 @@
   line-height: 1.75;
   color: var(--color-text-muted);
   margin-bottom: var(--space-10);
-  max-width: 420px;
+  max-width: 500px;
 }
 
 .brDesktop { display: block; }
 
 .buttons {
   display: flex;
-  gap: var(--space-4);
+  gap: var(--space-5);
   flex-wrap: wrap;
   align-items: center;
 }
@@ -99,10 +99,10 @@
 .uspWrap {
   position: relative;
   z-index: 1;
-  background: rgba(253, 250, 246, 0.92);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border-top: 1px solid var(--color-border-light);
+  background: rgba(253, 250, 246, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(201, 169, 110, 0.15);
 }
 
 .uspList {
@@ -118,7 +118,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-4);
-  padding: var(--space-6);
+  padding: var(--space-7) var(--space-6);
   position: relative;
 }
 
@@ -129,7 +129,7 @@
   top: 25%;
   height: 50%;
   width: 1px;
-  background: var(--color-border);
+  background: rgba(201, 169, 110, 0.25);
 }
 
 .uspIcon { flex-shrink: 0; color: var(--color-accent); }
@@ -164,7 +164,7 @@
     object-position: 70% center;
   }
   .textCol {
-    max-width: 480px;
+    max-width: 500px;
   }
   .uspList {
     grid-template-columns: repeat(2, 1fr);
@@ -200,7 +200,7 @@
     flex-direction: column;
   }
 
-  .heading { font-size: clamp(2rem, 8vw, 2.8rem); }
+  .heading { font-size: clamp(2.2rem, 8vw, 3rem); }
   .lead { font-size: var(--font-size-base); margin-bottom: var(--space-8); }
   .brDesktop { display: none; }
   .buttons { flex-direction: column; align-items: flex-start; }

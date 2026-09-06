@@ -17,6 +17,8 @@
 
 .transparent {
   background-color: transparent;
+  box-shadow: none;
+  border-bottom: none;
   padding-block: var(--space-6);
 }
 
@@ -32,7 +34,7 @@
 .inner {
   display: flex;
   align-items: center;
-  gap: var(--space-8);
+  gap: var(--space-10);
 }
 
 /* ---- Logo ---- */
@@ -42,23 +44,23 @@
   line-height: 1;
   text-decoration: none;
   flex-shrink: 0;
-  gap: 3px;
+  gap: 4px;
 }
 
 .logoName {
   font-family: var(--font-heading);
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   font-weight: 500;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.15em;
   color: var(--color-text);
   transition: color var(--transition-fast);
 }
 
 .logoSub {
   font-family: var(--font-body);
-  font-size: 0.6rem;
+  font-size: 0.62rem;
   font-weight: 400;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-text-muted);
 }
@@ -70,7 +72,7 @@
 /* ---- Desktop links ---- */
 .links {
   display: flex;
-  gap: var(--space-8);
+  gap: var(--space-10);
   margin-left: auto;
   list-style: none;
   padding: 0;
@@ -82,8 +84,8 @@
   font-family: var(--font-body);
   font-size: var(--font-size-sm);
   font-weight: 400;
-  letter-spacing: 0.06em;
-  color: var(--color-text-muted);
+  letter-spacing: 0.08em;
+  color: var(--color-text);
   text-decoration: none;
   padding-bottom: 3px;
   transition: color var(--transition-fast);
@@ -101,7 +103,7 @@
 }
 
 .link:hover {
-  color: var(--color-text);
+  color: var(--color-accent);
 }
 
 .link:hover::after,
@@ -124,7 +126,7 @@
   text-decoration: none;
   color: var(--color-accent-dark);
   border: 1px solid var(--color-accent);
-  padding: var(--space-2) var(--space-5);
+  padding: var(--space-3) var(--space-6);
   border-radius: var(--radius-small);
   white-space: nowrap;
   transition:
