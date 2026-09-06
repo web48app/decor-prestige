@@ -11,6 +11,7 @@ import Process  from './components/sections/Process/Process';
 import About    from './components/sections/About/About';
 import Quality  from './components/sections/Quality/Quality';
 import Gallery  from './components/sections/Gallery/Gallery';
+import Reviews  from './components/sections/Reviews/Reviews';
 import CTA      from './components/sections/CTA/CTA';
 import Contact  from './components/sections/Contact/Contact';
 
@@ -28,6 +29,7 @@ export default function App() {
         <About />
         <Quality />
         <Gallery />
+        <Reviews />
         <CTA />
         <Contact />
       </main>

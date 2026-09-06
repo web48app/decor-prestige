@@ -72,7 +72,7 @@ export default function Products() {
           <div className={styles.headerLeft}>
             <p className={styles.eyebrow}>Nasze Produkty</p>
             <h2 id="products-heading" className={styles.heading}>
-              Stylowe rozwiązania<br />dla Twojego wnętrza
+              Stylowe rozwiązania<br /><em className={styles.headingAccent}>dla Twojego wnętrza</em>
             </h2>
           </div>
           <div className={styles.headerRight}>
