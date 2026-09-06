@@ -1,9 +1,7 @@
 import { useEffect, useRef } from 'react';
-import Container from '../../ui/Container/Container';
-import Button    from '../../ui/Button/Button';
-import styles    from './Hero.module.css';
+import Button from '../../ui/Button/Button';
+import styles from './Hero.module.css';
 
-/* ---- Inline SVG icons ---- */
 const IconDiamond = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" aria-hidden="true" className={styles.icon}>
     <path d="M2.25 9l9.75 13 9.75-13M2.25 9h19.5M2.25 9L7.5 4h9l5.25 5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -50,10 +48,16 @@ export default function Hero() {
   return (
     <section id="start" className={styles.hero} aria-labelledby="hero-heading">
 
-      {/* ---- SPLIT LAYOUT ---- */}
-      <div className={`${styles.content} ${styles.fadeIn}`} ref={heroRef}>
+      {/* BG image — full bleed */}
+      <img
+        src="/hero.png"
+        alt=""
+        aria-hidden="true"
+        className={styles.bgImage}
+      />
 
-        {/* LEFT — text */}
+      {/* TEXT overlay — lewy obszar zdjęcia jest kremowy */}
+      <div className={`${styles.content} ${styles.fadeIn}`} ref={heroRef}>
         <div className={styles.textCol}>
           <p className={styles.eyebrow}>STYL&nbsp;·&nbsp;KOMFORT&nbsp;·&nbsp;HARMONIA</p>
 
@@ -71,50 +75,34 @@ export default function Hero() {
 
           <div className={styles.buttons}>
             <Button
-              as="a"
-              href="#kontakt"
-              variant="primary"
+              as="a" href="#kontakt" variant="primary"
               onClick={(e) => { e.preventDefault(); scrollTo('kontakt'); }}
             >
               Umów bezpłatny pomiar&nbsp;→
             </Button>
             <Button
-              as="a"
-              href="#oferta"
-              variant="secondary"
+              as="a" href="#oferta" variant="secondary"
               onClick={(e) => { e.preventDefault(); scrollTo('oferta'); }}
             >
               Zobacz ofertę&nbsp;↓
             </Button>
           </div>
         </div>
-
-        {/* RIGHT — image (tekst i blur są już na zdjęciu) */}
-        <div className={styles.imageCol}>
-          <img
-            src="/hero.png"
-            alt="Elegancka zasłona z dekoracją okna — realizacja DECOR-PRESTIGE"
-            className={styles.heroImage}
-            loading="eager"
-          />
-        </div>
       </div>
 
-      {/* ---- USP ROW ---- */}
+      {/* USP ROW */}
       <div className={styles.uspWrap}>
-        <Container>
-          <ul className={styles.uspList} role="list">
-            {USP_ITEMS.map((item, i) => (
-              <li key={i} className={styles.uspItem}>
-                <div className={styles.uspIcon}>{item.icon}</div>
-                <div className={styles.uspText}>
-                  <span className={styles.uspTitle}>{item.title}</span>
-                  <span className={styles.uspSub}>{item.sub}</span>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </Container>
+        <ul className={styles.uspList} role="list">
+          {USP_ITEMS.map((item, i) => (
+            <li key={i} className={styles.uspItem}>
+              <div className={styles.uspIcon}>{item.icon}</div>
+              <div className={styles.uspText}>
+                <span className={styles.uspTitle}>{item.title}</span>
+                <span className={styles.uspSub}>{item.sub}</span>
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

@@ -1,50 +1,57 @@
 /* ============================================================
-   HERO — DECOR-PRESTIGE
-   Split layout: text left / image right
+   HERO — full-bleed background image
+   Zdjęcie zajmuje całą sekcję, tekst nakłada się na kremową lewą stronę
    ============================================================ */
 
 .hero {
   position: relative;
-  background-color: var(--color-bg);
   min-height: 100svh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  background-color: var(--color-bg);
 }
 
-/* ---- Fade-in animation ---- */
+/* ---- Background image ---- */
+.bgImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+  display: block;
+  z-index: 0;
+}
+
+/* ---- Fade-in ---- */
 .fadeIn {
   opacity: 0;
-  transform: translateY(16px);
-  transition:
-    opacity  0.8s ease,
-    transform 0.8s ease;
+  transform: translateY(14px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
 }
-
 .visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* ---- Split content ---- */
+/* ---- Content overlay ---- */
 .content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  position: relative;
+  z-index: 1;
   flex: 1;
-  min-height: calc(100svh - 120px);
+  display: flex;
+  align-items: center;
 }
 
-/* ---- LEFT — text column ---- */
+/* ---- Text column (lewy obszar — kremowy w zdjęciu) ---- */
 .textCol {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: clamp(6rem, 10vw, 9rem) var(--container-padding) var(--space-12);
-  padding-left: clamp(var(--container-padding), 6vw, 6rem);
-  max-width: 600px;
+  padding: clamp(6rem, 10vw, 9rem) clamp(var(--container-padding), 6vw, 6rem) var(--space-12);
+  max-width: 560px;
 }
 
-/* Eyebrow */
 .eyebrow {
   font-family: var(--font-body);
   font-size: var(--font-size-xs);
@@ -55,7 +62,6 @@
   margin-bottom: var(--space-6);
 }
 
-/* H1 */
 .heading {
   font-family: var(--font-heading);
   font-size: clamp(2.6rem, 5vw, 4.2rem);
@@ -72,18 +78,16 @@
   color: var(--color-accent);
 }
 
-/* Lead */
 .lead {
   font-size: var(--font-size-md);
   line-height: 1.75;
   color: var(--color-text-muted);
   margin-bottom: var(--space-10);
-  max-width: 440px;
+  max-width: 420px;
 }
 
 .brDesktop { display: block; }
 
-/* Buttons */
 .buttons {
   display: flex;
   gap: var(--space-4);
@@ -91,44 +95,33 @@
   align-items: center;
 }
 
-/* ---- RIGHT — image column ---- */
-.imageCol {
-  overflow: hidden;
-  display: flex;
-  align-items: stretch;
-}
-
-.heroImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: left center;
-  display: block;
-}
-
 /* ---- USP row ---- */
 .uspWrap {
-  background: var(--color-bg-secondary);
+  position: relative;
+  z-index: 1;
+  background: rgba(253, 250, 246, 0.92);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   border-top: 1px solid var(--color-border-light);
 }
 
 .uspList {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
   list-style: none;
-  padding: 0;
-  margin: 0;
 }
 
 .uspItem {
   display: flex;
   align-items: center;
   gap: var(--space-4);
-  padding: var(--space-6) var(--space-6);
+  padding: var(--space-6);
   position: relative;
 }
 
-/* vertical separator between items */
 .uspItem + .uspItem::before {
   content: '';
   position: absolute;
@@ -139,15 +132,8 @@
   background: var(--color-border);
 }
 
-.uspIcon {
-  flex-shrink: 0;
-  color: var(--color-accent);
-}
-
-.icon {
-  width: 28px;
-  height: 28px;
-}
+.uspIcon { flex-shrink: 0; color: var(--color-accent); }
+.icon { width: 28px; height: 28px; }
 
 .uspText {
   display: flex;
@@ -173,76 +159,57 @@
    RESPONSIVE
    ============================================================ */
 
-/* Tablet */
-@media (max-width: 1100px) {
-  .content {
-    grid-template-columns: 1fr 1fr;
+@media (max-width: 900px) {
+  .bgImage {
+    object-position: 70% center;
   }
   .textCol {
-    padding: clamp(6rem, 10vw, 8rem) var(--space-8) var(--space-8);
+    max-width: 480px;
   }
   .uspList {
     grid-template-columns: repeat(2, 1fr);
   }
   .uspItem:nth-child(3)::before { display: none; }
-  .uspItem:nth-child(odd):not(:first-child)::before { display: none; }
-  .uspItem:nth-child(even):not(:nth-child(2))::before { display: none; }
 }
 
-/* Mobile */
-@media (max-width: 700px) {
-  .hero {
-    min-height: auto;
+@media (max-width: 600px) {
+  .hero { min-height: auto; }
+
+  .bgImage {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: 55vw;
+    min-height: 220px;
+    max-height: 380px;
+    object-position: center center;
+    order: 2;
   }
 
   .content {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
-    min-height: auto;
+    order: 1;
+    background: var(--color-bg);
   }
 
   .textCol {
-    order: 1;
-    padding: calc(var(--space-24) + var(--space-8)) var(--container-padding) var(--space-8);
+    padding: calc(var(--space-24) + var(--space-4)) var(--container-padding) var(--space-8);
     max-width: 100%;
   }
 
-  .imageCol {
-    order: 2;
-    height: 55vw;
-    min-height: 240px;
-    max-height: 420px;
-  }
-
-  .heading {
-    font-size: clamp(2rem, 8vw, 2.8rem);
-  }
-
-  .lead {
-    font-size: var(--font-size-base);
-    margin-bottom: var(--space-8);
-  }
-
-  .brDesktop { display: none; }
-
-  .buttons {
+  .hero {
     flex-direction: column;
-    align-items: flex-start;
   }
 
-  .uspList {
-    grid-template-columns: 1fr 1fr;
-  }
+  .heading { font-size: clamp(2rem, 8vw, 2.8rem); }
+  .lead { font-size: var(--font-size-base); margin-bottom: var(--space-8); }
+  .brDesktop { display: none; }
+  .buttons { flex-direction: column; align-items: flex-start; }
 
+  .uspList { grid-template-columns: 1fr 1fr; }
   .uspItem::before { display: none !important; }
-
-  .uspItem {
-    padding: var(--space-5) var(--space-4);
-  }
+  .uspItem { padding: var(--space-4); }
 }
 
-@media (max-width: 400px) {
-  .uspList {
-    grid-template-columns: 1fr;
-  }
+@media (max-width: 380px) {
+  .uspList { grid-template-columns: 1fr; }
 }
