@@ -27,9 +27,9 @@ export default function App() {
         <Products />
         <Process />
         <About />
-        <Quality />
         <Gallery />
         <Reviews />
+        <Quality />
         <CTA />
         <Contact />
       </main>
