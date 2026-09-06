@@ -5,9 +5,9 @@ import { services } from '../../../data/services';
 import styles from './Services.module.css';
 
 const icons = {
-  doradztwo: <Lightbulb size={20} strokeWidth={1.2} />,
-  szycie:    <Scissors  size={20} strokeWidth={1.2} />,
-  montaz:    <Wrench    size={20} strokeWidth={1.2} />,
+  doradztwo: <Lightbulb size={22} strokeWidth={1.2} />,
+  szycie:    <Scissors  size={22} strokeWidth={1.2} />,
+  montaz:    <Wrench    size={22} strokeWidth={1.2} />,
 };
 
 function ServiceCard({ service, index }) {
@@ -23,7 +23,7 @@ function ServiceCard({ service, index }) {
           observer.disconnect();
         }
       },
-      { threshold: 0.12 }
+      { threshold: 0.15 }
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -31,27 +31,27 @@ function ServiceCard({ service, index }) {
 
   return (
     <article
-      className={`${styles.item} ${styles.fadeIn}`}
+      className={`${styles.card} ${styles.fadeIn}`}
       ref={ref}
       style={{ transitionDelay: `${index * 0.12}s` }}
     >
-      <div className={styles.imageWrap}>
+      <div className={styles.cardImageWrap}>
         <img
           src={service.image}
           alt={service.imageAlt}
-          className={styles.image}
+          className={styles.cardImage}
           loading="lazy"
           onError={(e) => { e.currentTarget.style.display = 'none'; }}
         />
-        <div className={styles.imageFallback} aria-hidden="true" />
+        <div className={styles.cardImageFallback} aria-hidden="true" />
       </div>
 
-      <div className={styles.meta}>
-        <span className={styles.icon} aria-hidden="true">
+      <div className={styles.cardBody}>
+        <div className={styles.cardIcon} aria-hidden="true">
           {icons[service.id]}
-        </span>
-        <h3 className={styles.title}>{service.title}</h3>
-        <p className={styles.desc}>{service.description}</p>
+        </div>
+        <h3 className={styles.cardTitle}>{service.title}</h3>
+        <p className={styles.cardDesc}>{service.description}</p>
       </div>
     </article>
   );
@@ -80,6 +80,7 @@ export default function Services() {
     <section id="oferta" className={styles.section} aria-labelledby="services-heading">
       <Container>
 
+        {/* ---- Section header ---- */}
         <div className={`${styles.header} ${styles.fadeIn}`} ref={headingRef}>
           <div className={styles.headerLeft}>
             <p className={styles.eyebrow}>Nasze Usługi</p>
@@ -96,7 +97,8 @@ export default function Services() {
           </div>
         </div>
 
-        <div className={styles.grid}>
+        {/* ---- Cards ---- */}
+        <div className={styles.cards}>
           {services.map((s, i) => (
             <ServiceCard key={s.id} service={s} index={i} />
           ))}
