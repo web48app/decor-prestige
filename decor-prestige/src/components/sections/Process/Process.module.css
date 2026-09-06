@@ -39,7 +39,7 @@
   top: -500px;          /* otwiera przestrzeń dla gałązek powyżej */
   bottom: 0;            /* koniec = dół sekcji → tu się utnie stolik */
   left: clamp(-140px, -10vw, -80px);
-  width: clamp(420px, 55vw, 780px);
+  width: clamp(520px, 68vw, 960px);
   overflow: hidden;     /* obcina dół (stolik) */
   pointer-events: none;
   z-index: 1;
