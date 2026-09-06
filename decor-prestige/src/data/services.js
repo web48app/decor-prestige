@@ -2,19 +2,22 @@ export const services = [
   {
     id:          'doradztwo',
     title:       'Doradztwo',
-    description: 'Pomagamy dobrać odpowiednie dekoracje do każdego wnętrza. Doradzimy w wyborze tkanin, kolorów i rozwiązań technicznych dopasowanych do Twoich potrzeb i stylu.',
-    icon:        null, // dodać później
+    description: 'Pomagamy dobrać idealne rozwiązania do Twojego wnętrza.',
+    image:       '/services/doradztwo.jpg',
+    imageAlt:    'Doradztwo w doborze dekoracji okiennych',
   },
   {
     id:          'szycie',
     title:       'Szycie',
-    description: 'Wszystkie dekoracje szyjemy na miarę — wyłącznie z wysokiej jakości tkanin od sprawdzonych dostawców. Każde zamówienie jest realizowane z dbałością o najdrobniejszy detal.',
-    icon:        null,
+    description: 'Tworzymy dekoracje na wymiar, z dbałością o każdy detal.',
+    image:       '/services/szycie.jpg',
+    imageAlt:    'Szycie dekoracji okiennych na miarę',
   },
   {
     id:          'montaz',
     title:       'Montaż',
-    description: 'Profesjonalny montaż w Twoim domu lub lokalu. Przyjeżdżamy, montujemy i dbamy o to, żeby efekt końcowy był dokładnie taki, jak wyobrażałaś sobie na początku.',
-    icon:        null,
+    description: 'Profesjonalny montaż u klienta.',
+    image:       '/services/montaz.jpg',
+    imageAlt:    'Profesjonalny montaż dekoracji okiennych',
   },
 ];
