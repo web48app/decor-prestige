@@ -38,7 +38,7 @@
   width: clamp(420px, 55vw, 780px);
   /* dół przyklejony do sekcji, góra gałązek wychodzi powyżej */
   opacity: 0.88;
-  z-index: 3;
+  z-index: 1;   /* pod .inner (z-index: 2) → kwiatek za stepsami */
   pointer-events: none;
   user-select: none;
   object-fit: contain;
