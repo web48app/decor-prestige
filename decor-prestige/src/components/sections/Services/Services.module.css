@@ -1,16 +1,15 @@
 /* ============================================================
-   SERVICES — Kompleksowa obsługa od pomiaru po montaż
-   3 karty: Doradztwo | Szycie | Montaż
+   SERVICES — editorial, no cards, no boxes
+   3 kolumny: zdjęcie + ikona + tytuł + opis. Spójne z Products.
    ============================================================ */
 
 .section {
   background-color: var(--color-bg-secondary);
 }
 
-/* ---- Fade-in ---- */
 .fadeIn {
   opacity: 0;
-  transform: translateY(24px);
+  transform: translateY(20px);
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 .visible {
@@ -19,27 +18,26 @@
 }
 
 /* ============================================================
-   SECTION HEADER
+   HEADER
    ============================================================ */
 
 .header {
   display: flex;
   align-items: flex-end;
   gap: var(--space-16);
-  margin-bottom: var(--space-16);
+  margin-bottom: var(--space-14);
 }
 
 .headerLeft {
   flex: 0 0 auto;
-  max-width: 520px;
+  max-width: 500px;
 }
 
 .headerRight {
   flex: 1;
-  padding-bottom: var(--space-2);
+  padding-bottom: var(--space-1);
 }
 
-/* ---- Eyebrow ---- */
 .eyebrow {
   font-family: var(--font-body);
   font-size: var(--font-size-xs);
@@ -50,7 +48,6 @@
   margin-bottom: var(--space-5);
 }
 
-/* ---- H2 ---- */
 .heading {
   font-family: var(--font-heading);
   font-size: clamp(2.2rem, 3.8vw, 3.4rem);
@@ -66,116 +63,79 @@
   color: var(--color-accent);
 }
 
-/* ---- Lead text ---- */
 .lead {
   font-family: var(--font-body);
   font-size: var(--font-size-md);
   line-height: 1.75;
   color: var(--color-text-muted);
-  max-width: 420px;
+  max-width: 400px;
 }
 
 /* ============================================================
-   CARDS GRID
+   GRID
    ============================================================ */
 
-.cards {
+.grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-6);
+  gap: var(--space-8);
 }
 
 /* ============================================================
-   SINGLE CARD
+   SINGLE ITEM — bez kart, bez box-shadow, editorial
    ============================================================ */
 
-.card {
+.item {
   display: flex;
   flex-direction: column;
-  background: var(--color-bg);
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--radius-large);
-  overflow: hidden;
-  transition:
-    transform 0.35s ease,
-    box-shadow 0.35s ease;
-  cursor: default;
 }
 
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-medium);
-}
-
-/* ---- Image area ---- */
-.cardImageWrap {
+/* ---- Image ---- */
+.imageWrap {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   background: var(--color-bg-tertiary);
-  flex-shrink: 0;
+  margin-bottom: var(--space-6);
 }
 
-.cardImage {
+.image {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
-  transition: transform 0.5s ease;
   display: block;
+  transition: transform 0.5s ease;
 }
 
-.card:hover .cardImage {
-  transform: scale(1.04);
+.item:hover .image {
+  transform: scale(1.03);
 }
 
-/* Elegant fallback when image missing */
-.cardImageFallback {
+.imageFallback {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    135deg,
-    var(--color-bg-tertiary) 0%,
-    var(--color-accent-light) 100%
-  );
+  background: linear-gradient(135deg, var(--color-bg-tertiary) 0%, var(--color-accent-light) 100%);
   z-index: -1;
 }
 
-/* ---- Card body ---- */
-.cardBody {
-  padding: var(--space-8);
+/* ---- Meta ---- */
+.meta {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
-  flex: 1;
 }
 
-/* ---- Icon circle ---- */
-.cardIcon {
+.icon {
+  color: var(--color-accent);
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: 1px solid var(--color-accent-light);
-  background: var(--color-bg);
-  color: var(--color-accent);
-  flex-shrink: 0;
-  margin-bottom: var(--space-2);
-  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-.card:hover .cardIcon {
-  background: var(--color-accent-light);
-  border-color: var(--color-accent);
-}
-
-/* ---- Title ---- */
-.cardTitle {
+.title {
   font-family: var(--font-heading);
   font-size: var(--font-size-xl);
   font-weight: 400;
@@ -184,8 +144,7 @@
   letter-spacing: -0.01em;
 }
 
-/* ---- Description ---- */
-.cardDesc {
+.desc {
   font-family: var(--font-body);
   font-size: var(--font-size-base);
   line-height: 1.65;
@@ -196,50 +155,25 @@
    RESPONSIVE
    ============================================================ */
 
-@media (max-width: 960px) {
+@media (max-width: 900px) {
   .header {
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-6);
-    margin-bottom: var(--space-12);
-  }
-
-  .headerLeft {
-    max-width: 100%;
-  }
-
-  .lead {
-    max-width: 100%;
-  }
-
-  .cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  /* Last card spans full width on 2-col tablet */
-  .card:last-child {
-    grid-column: 1 / -1;
-    max-width: 50%;
-  }
-}
-
-@media (max-width: 600px) {
-  .header {
     margin-bottom: var(--space-10);
   }
+  .headerLeft { max-width: 100%; }
+  .lead { max-width: 100%; }
+}
 
-  .cards {
+@media (max-width: 700px) {
+  .grid {
     grid-template-columns: 1fr;
-    gap: var(--space-5);
+    gap: var(--space-10);
   }
 
-  .card:last-child {
-    grid-column: auto;
-    max-width: 100%;
-  }
-
-  .cardImageWrap {
-    height: 260px;
+  .imageWrap {
+    aspect-ratio: 16 / 9;
   }
 
   .heading {
