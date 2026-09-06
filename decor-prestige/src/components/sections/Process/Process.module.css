@@ -1,44 +1,39 @@
 /* ============================================================
    PROCESS — Od pomiaru do gotowej dekoracji
    Tło: process-bg.png + ivory overlay + kwiatek dekoracyjny
+   Animacja: linia rysuje się od lewej, kroki pojawiają się sekwencyjnie
    ============================================================ */
 
-/* Zeruj sekcję (section base dodaje padding) */
 .section {
   position: relative;
   padding: 0;
-  overflow: visible; /* kwiatek wychodzi poza górną krawędź */
+  overflow: visible;
 
-  /* Tło */
   background-image: url('/process-bg.png');
   background-size: cover;
   background-position: left center;
   background-repeat: no-repeat;
-
-  /* Overlay — gradient: bardziej transparentny po lewej,
-     pełny ivory po prawej (czytelność procesu) */
-  background-color: transparent;
 }
 
-/* Gradient overlay przez pseudo-element */
+/* Gradient overlay */
 .section::before {
   content: '';
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to right,
-    rgba(253, 250, 246, 0.55) 0%,
+    rgba(253, 250, 246, 0.52) 0%,
     rgba(253, 250, 246, 0.80) 40%,
-    rgba(253, 250, 246, 0.92) 100%
+    rgba(253, 250, 246, 0.93) 100%
   );
   z-index: 0;
   pointer-events: none;
 }
 
-/* ---- Kwiatek dekoracyjny ---- */
+/* ---- Kwiatek ---- */
 .flower {
   position: absolute;
-  bottom: 0;           /* przyklejony do dołu sekcji */
+  bottom: 0;
   left: clamp(-10px, -0.5vw, 0px);
   width: clamp(220px, 28vw, 420px);
   opacity: 0.88;
@@ -49,18 +44,16 @@
   object-position: bottom left;
 }
 
-/* ---- Wewnętrzna zawartość — nad overlay ---- */
+/* ---- Inner ---- */
 .inner {
   position: relative;
   z-index: 2;
   max-width: var(--container-width);
   margin: 0 auto;
-  padding:
-    var(--section-padding-y)
-    var(--container-padding);
+  padding: var(--section-padding-y) var(--container-padding);
 }
 
-/* ---- Fade-in ---- */
+/* ---- Nagłówek fade-in ---- */
 .fadeIn {
   opacity: 0;
   transform: translateY(20px);
@@ -100,40 +93,63 @@
 }
 
 /* ============================================================
-   PROCESS LIST
+   PROCESS WRAP — zawiera linię i listę
    ============================================================ */
 
 .processWrap {
+  position: relative;
   display: flex;
   justify-content: center;
 }
 
+/* ============================================================
+   ANIMOWANA LINIA
+   Rysuje się od lewej do prawej po dodaniu klasy .animate
+   ============================================================ */
+
+.line {
+  position: absolute;
+  /* wyśrodkuj pionowo z kółkami (kółko 48px, więc 24px od góry listy) */
+  top: 24px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    var(--color-accent-light),
+    var(--color-accent),
+    var(--color-accent-light)
+  );
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Linia startuje po .animate */
+.animate .line {
+  transform: scaleX(1);
+}
+
+/* ============================================================
+   LISTA KROKÓW
+   ============================================================ */
+
 .list {
+  position: relative;
+  z-index: 1; /* nad linią */
   display: flex;
-  align-items: center;
-  gap: 0;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 900px;
   list-style: none;
   padding: 0;
   margin: 0;
-  flex-wrap: nowrap;
-}
-
-/* ---- Strzałki między krokami ---- */
-.arrowItem {
-  display: flex;
-  align-items: center;
-  color: var(--color-accent-light);
-  flex-shrink: 0;
-  padding: 0 var(--space-2);
-}
-
-.arrow {
-  display: block;
-  flex-shrink: 0;
 }
 
 /* ============================================================
    SINGLE STEP
+   Pojawia się z opóźnieniem (--step-delay) po .animate
    ============================================================ */
 
 .step {
@@ -141,9 +157,39 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-4);
-  flex-shrink: 0;
-  width: clamp(130px, 16vw, 180px);
+  flex: 1;
   text-align: center;
+  cursor: default;
+
+  /* Domyślnie ukryty */
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.55s ease var(--step-delay, 0s),
+    transform 0.55s ease var(--step-delay, 0s);
+}
+
+/* Pojawia się po .animate na wrapperze */
+.animate .step {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hover: przyciemnia rodzeństwo */
+.list:has(.step:hover) .step {
+  opacity: 0.35;
+  transform: scale(0.97);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.list:has(.step:hover) .step:hover {
+  opacity: 1;
+  transform: scale(1.04);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
 }
 
 /* ---- Numer ---- */
@@ -161,6 +207,12 @@
   font-weight: 500;
   letter-spacing: 0.08em;
   flex-shrink: 0;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.step:hover .num {
+  background: var(--color-accent-dark);
+  transform: scale(1.1);
 }
 
 /* ---- Ikona ---- */
@@ -171,6 +223,11 @@
   color: var(--color-accent);
   width: 32px;
   height: 32px;
+  transition: color 0.3s ease;
+}
+
+.step:hover .iconWrap {
+  color: var(--color-accent-dark);
 }
 
 /* ---- Tytuł ---- */
@@ -196,17 +253,9 @@
    ============================================================ */
 
 @media (max-width: 860px) {
-  .step {
-    width: clamp(100px, 15vw, 140px);
-    gap: var(--space-3);
-  }
-
-  .arrow {
-    width: 24px;
-  }
-
-  .arrowItem {
-    padding: 0 var(--space-1);
+  .list {
+    max-width: 100%;
+    gap: var(--space-2);
   }
 
   .num {
@@ -215,14 +264,22 @@
     font-size: 0.72rem;
   }
 
+  .line {
+    top: 20px;
+  }
+
   .title {
     font-size: var(--font-size-md);
+  }
+
+  .step {
+    gap: var(--space-3);
   }
 }
 
 /* ============================================================
    RESPONSIVE — MOBILE
-   Pionowy timeline
+   Pionowy timeline, linia pionowa
    ============================================================ */
 
 @media (max-width: 600px) {
@@ -241,52 +298,66 @@
     justify-content: flex-start;
   }
 
+  /* Linia pionowa na mobile */
+  .line {
+    top: 0;
+    bottom: 0;
+    left: 20px; /* środek kółka 40px */
+    right: auto;
+    width: 1px;
+    height: auto;
+    transform-origin: top center;
+    transform: scaleY(0);
+    background: linear-gradient(
+      to bottom,
+      var(--color-accent-light),
+      var(--color-accent),
+      var(--color-accent-light)
+    );
+    transition: transform 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .animate .line {
+    transform: scaleY(1);
+  }
+
   .list {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0;
+    gap: var(--space-6);
     width: 100%;
+    padding-left: 0;
   }
 
-  /* Krok — poziomy układ na mobile */
   .step {
     flex-direction: row;
     align-items: center;
     text-align: left;
     width: 100%;
     gap: var(--space-4);
-    padding: var(--space-3) 0;
+    transform: translateX(-12px);
+  }
+
+  .animate .step {
+    transform: translateX(0);
+  }
+
+  /* Hover nie działa tak dobrze na touch — wyłącz przyciemnianie */
+  .list:has(.step:hover) .step {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .list:has(.step:hover) .step:hover {
+    transform: translateX(4px);
   }
 
   .num {
     flex-shrink: 0;
-  }
-
-  .iconWrap {
-    flex-shrink: 0;
-  }
-
-  /* Tekst kroku */
-  .stepText {
-    display: flex;
-    flex-direction: column;
+    width: 40px;
+    height: 40px;
   }
 
   .title {
     font-size: var(--font-size-md);
-  }
-
-  /* Strzałki — pionowe na mobile */
-  .arrowItem {
-    padding: 0 0 0 calc(36px / 2 - 0.5px); /* wyrównanie do środka kółka */
-    margin-left: calc(36px / 2 - 0.5px);
-    height: var(--space-5);
-    border-left: 1px solid var(--color-accent-light);
-    display: block;
-  }
-
-  /* Ukryj SVG strzałkę na mobile — używamy border-left */
-  .arrowItem .arrow {
-    display: none;
   }
 }
