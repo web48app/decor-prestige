@@ -17,7 +17,7 @@ export const services = [
     id:          'montaz',
     title:       'Montaż',
     description: 'Profesjonalny montaż u klienta.',
-    image:       '/Services/montaż.png',
+    image:       '/Services/montaz.png',
     imageAlt:    'Profesjonalny montaż dekoracji okiennych',
   },
 ];
