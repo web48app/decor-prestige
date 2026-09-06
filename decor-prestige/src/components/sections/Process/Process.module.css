@@ -89,7 +89,7 @@
 .eyebrow {
   font-family: var(--font-body);
   font-size: var(--font-size-xs);
-  font-weight: 500;
+  font-weight: 800;
   letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--color-taupe);
@@ -217,7 +217,7 @@
   color: #FDFAF6;
   font-family: var(--font-body);
   font-size: 0.8rem;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: 0.08em;
   flex-shrink: 0;
   transition: background 0.3s ease, transform 0.3s ease;
