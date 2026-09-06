@@ -89,22 +89,14 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* RIGHT — image */}
-        <div className={styles.imageCol} aria-hidden="true">
-          <div className={styles.imageWrap}>
-            <img
-              src="/hero.png"
-              alt="Elegancka zasłona z dekoracją okna — realizacja DECOR-PRESTIGE"
-              className={styles.heroImage}
-              loading="eager"
-            />
-            {/* editorial overlay */}
-            <div className={styles.editorial} aria-hidden="true">
-              <span>Więcej</span>
-              <span>niż dekoracje</span>
-              <span className={styles.editorialAccent}>To styl życia</span>
-            </div>
-          </div>
+        {/* RIGHT — image (tekst i blur są już na zdjęciu) */}
+        <div className={styles.imageCol}>
+          <img
+            src="/hero.png"
+            alt="Elegancka zasłona z dekoracją okna — realizacja DECOR-PRESTIGE"
+            className={styles.heroImage}
+            loading="eager"
+          />
         </div>
       </div>
 
