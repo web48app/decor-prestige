@@ -64,7 +64,10 @@ export default function Process() {
   return (
     <section id="proces" className={styles.section} aria-labelledby="process-heading">
 
-      <img src="/process-flower.png" alt="" className={styles.flower} aria-hidden="true" />
+      {/* Wrapper obcina dół (stolik), zostawia górę otwartą (gałązki) */}
+      <div className={styles.flowerWrap} aria-hidden="true">
+        <img src="/process-flower.png" alt="" className={styles.flower} />
+      </div>
 
       <div className={styles.inner}>
 
