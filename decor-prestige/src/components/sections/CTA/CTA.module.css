@@ -1,6 +1,6 @@
 /* ============================================================
    CTA — wezwanie do działania
-   Tło: cta-bg.png
+   Tło: cta-bg.png (jasne, kremowe)
    Układ: tekst (L) + akcje (P)
    ============================================================ */
 
@@ -14,24 +14,10 @@
   background-repeat: no-repeat;
 }
 
-/* Gradient overlay — ciemniejszy po lewej */
-.overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    100deg,
-    rgba(20, 14, 8, 0.90) 0%,
-    rgba(20, 14, 8, 0.78) 45%,
-    rgba(20, 14, 8, 0.55) 100%
-  );
-  z-index: 0;
-  pointer-events: none;
-}
-
 /* ---- Animacja wejścia ---- */
 .fadeIn {
   opacity: 0;
-  transform: translateY(22px);
+  transform: translateY(20px);
   transition: opacity 0.9s ease, transform 0.9s ease;
 }
 
@@ -40,7 +26,7 @@
   transform: translateY(0);
 }
 
-/* ---- Wewnętrzny układ ---- */
+/* ---- Układ wewnętrzny ---- */
 .inner {
   position: relative;
   z-index: 1;
@@ -53,15 +39,15 @@
 }
 
 /* ============================================================
-   TEKST (lewa strona)
+   TEKST (lewa strona) — ciemny tekst na jasnym tle
    ============================================================ */
 
 .text {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
-  max-width: 580px;
+  gap: var(--space-4);
+  max-width: 560px;
 }
 
 .eyebrow {
@@ -70,23 +56,23 @@
   font-weight: 700;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--color-accent-light);
+  color: var(--color-accent);
 }
 
 .heading {
   font-family: var(--font-heading);
-  font-size: clamp(2.8rem, 4.8vw, 4.4rem);
+  font-size: clamp(2.8rem, 5vw, 4.6rem);
   font-weight: 300;
   line-height: 1.08;
   letter-spacing: -0.01em;
-  color: #F5EDE0;
+  color: #1A120A;
 }
 
 .lead {
   font-family: var(--font-body);
   font-size: var(--font-size-base);
   line-height: 1.65;
-  color: rgba(245, 237, 224, 0.70);
+  color: rgba(26, 18, 10, 0.60);
 }
 
 /* ============================================================
@@ -97,7 +83,7 @@
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--space-6);
 }
 
@@ -109,42 +95,69 @@
   font-family: var(--font-body);
   font-size: var(--font-size-sm);
   font-weight: 500;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   text-decoration: none;
-  color: #1A120A;
-  background: var(--color-accent-light);
-  border: 1.5px solid var(--color-accent-light);
-  border-radius: var(--radius-full);
+  color: #F5EDE0;
+  background: var(--color-accent);
+  border: 1.5px solid var(--color-accent);
+  border-radius: var(--radius-md);
   padding: var(--space-4) var(--space-10);
   transition:
     background var(--transition-normal),
-    color var(--transition-normal),
-    border-color var(--transition-normal);
+    border-color var(--transition-normal),
+    opacity var(--transition-normal);
 }
 
 .ctaBtn:hover {
-  background: var(--color-accent);
-  border-color: var(--color-accent);
-  color: #F5EDE0;
+  opacity: 0.88;
 }
 
-/* Link telefoniczny */
-.phoneLink {
-  display: inline-flex;
+/* Blok telefoniczny */
+.phoneBlock {
+  display: flex;
   align-items: center;
-  gap: var(--space-2);
+  gap: var(--space-4);
+}
+
+.phoneDot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid rgba(201, 169, 110, 0.5);
+  color: var(--color-accent);
+  flex-shrink: 0;
+  background: rgba(201, 169, 110, 0.06);
+}
+
+.phoneInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.phoneNum {
   font-family: var(--font-body);
   font-size: var(--font-size-lg);
-  font-weight: 300;
-  letter-spacing: 0.08em;
-  color: rgba(245, 237, 224, 0.75);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: #1A120A;
   text-decoration: none;
   transition: color var(--transition-fast);
 }
 
-.phoneLink:hover {
-  color: var(--color-accent-light);
+.phoneNum:hover {
+  color: var(--color-accent);
+}
+
+.phoneSub {
+  font-family: var(--font-body);
+  font-size: var(--font-size-xs);
+  color: rgba(26, 18, 10, 0.50);
+  letter-spacing: 0.04em;
 }
 
 /* ============================================================
@@ -159,7 +172,6 @@
   }
 
   .actions {
-    align-items: flex-start;
     width: 100%;
   }
 

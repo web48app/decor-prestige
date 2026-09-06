@@ -21,16 +21,14 @@ export default function CTA() {
   return (
     <section id="kontakt" className={styles.section} aria-labelledby="cta-heading">
 
-      <div className={styles.overlay} aria-hidden="true" />
-
       <Container>
         <div className={`${styles.inner} ${styles.fadeIn}`} ref={innerRef}>
 
           {/* Tekst */}
           <div className={styles.text}>
-            <p className={styles.eyebrow}>Gotowa na zmianę?</p>
+            <p className={styles.eyebrow}>Stwórzmy razem</p>
             <h2 id="cta-heading" className={styles.heading}>
-              Stwórzmy razem<br />wyjątkową oprawę<br />Twoich okien.
+              wyjątkową oprawę<br />Twoich okien.
             </h2>
             <p className={styles.lead}>
               Umów się na bezpłatny pomiar i indywidualną wycenę.
@@ -42,10 +40,18 @@ export default function CTA() {
             <a href={site.contact.phoneHref} className={styles.ctaBtn}>
               Umów bezpłatny pomiar →
             </a>
-            <a href={site.contact.phoneHref} className={styles.phoneLink}>
-              <Phone size={20} strokeWidth={1.4} aria-hidden="true" />
-              <span>{site.contact.phone}</span>
-            </a>
+
+            <div className={styles.phoneBlock}>
+              <span className={styles.phoneDot} aria-hidden="true">
+                <Phone size={20} strokeWidth={1.4} />
+              </span>
+              <div className={styles.phoneInfo}>
+                <a href={site.contact.phoneHref} className={styles.phoneNum}>
+                  {site.contact.phone}
+                </a>
+                <span className={styles.phoneSub}>Porozmawiajmy o Twoim wnętrzu</span>
+              </div>
+            </div>
           </div>
 
         </div>
