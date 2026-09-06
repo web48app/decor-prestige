@@ -1,6 +1,15 @@
 import { useEffect, useRef } from 'react';
+import { Ruler, Layers, FileText, Scissors, Hammer } from 'lucide-react';
 import { steps } from '../../../data/process';
 import styles from './Process.module.css';
+
+const icons = {
+  pomiar:  <Ruler     size={24} strokeWidth={1.2} />,
+  wybor:   <Layers    size={24} strokeWidth={1.2} />,
+  wycena:  <FileText  size={24} strokeWidth={1.2} />,
+  szycie:  <Scissors  size={24} strokeWidth={1.2} />,
+  montaz:  <Hammer    size={24} strokeWidth={1.2} />,
+};
 
 function Arrow() {
   return (
@@ -36,8 +45,6 @@ function Step({ step, index }) {
     return () => observer.disconnect();
   }, []);
 
-  const Icon = step.icon;
-
   return (
     <li
       ref={ref}
@@ -46,7 +53,7 @@ function Step({ step, index }) {
     >
       <span className={styles.num}>{step.num}</span>
       <div className={styles.iconWrap} aria-hidden="true">
-        <Icon size={20} strokeWidth={1.2} />
+        {icons[step.id]}
       </div>
       <span className={styles.title}>{step.title}</span>
       <span className={styles.sub}>{step.sub}</span>
