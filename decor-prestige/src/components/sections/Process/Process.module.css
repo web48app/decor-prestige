@@ -43,7 +43,7 @@
   user-select: none;
   object-fit: contain;
   object-position: bottom left;
-  margin-left: clamp(-60px, -4vw, -30px);
+  margin-left: clamp(-140px, -10vw, -80px);
 }
 
 /* ---- Inner ---- */
