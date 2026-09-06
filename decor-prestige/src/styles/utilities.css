@@ -1,0 +1,45 @@
+/* ============================================================
+   DECOR-PRESTIGE — Utilities
+   ============================================================ */
+
+/* Visually hidden (accessibility) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Text alignment */
+.text-center { text-align: center; }
+.text-left   { text-align: left; }
+.text-right  { text-align: right; }
+
+/* Text colors */
+.text-muted  { color: var(--color-text-muted); }
+.text-accent { color: var(--color-accent); }
+.text-light  { color: var(--color-text-light); }
+
+/* Divider */
+.divider {
+  width: 48px;
+  height: 1px;
+  background: var(--color-accent);
+  margin: 0 auto;
+}
+
+.divider--left {
+  margin-left: 0;
+}
+
+/* Focus visible (keyboard nav) */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-small);
+}
