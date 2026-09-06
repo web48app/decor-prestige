@@ -19,7 +19,7 @@ export default function App() {
     <>
       <Navbar />
 
-      <main id="start">
+      <main>
         <Hero />
         <Intro />
         <Services />

@@ -25,9 +25,7 @@ export const site = {
 
   nav: [
     { label: 'Oferta',       href: '#oferta' },
-    { label: 'Produkty',     href: '#produkty' },
-    { label: 'Proces',       href: '#proces' },
-    { label: 'O firmie',     href: '#o-firmie' },
+    { label: 'Dlaczego my',  href: '#o-firmie' },
     { label: 'Realizacje',   href: '#realizacje' },
     { label: 'Kontakt',      href: '#kontakt' },
   ],
