@@ -8,10 +8,10 @@ function UspItem({ item, index }) {
   return (
     <li
       className={styles.uspItem}
-      style={{ '--usp-delay': `${0.3 + index * 0.15}s` }}
+      style={{ '--usp-delay': `${0.25 + index * 0.2}s` }}
     >
-      <span className={styles.uspIcon} aria-hidden="true">
-        <Icon size={22} strokeWidth={1.2} />
+      <span className={styles.uspDot} aria-hidden="true">
+        <Icon size={18} strokeWidth={1.3} />
       </span>
       <span className={styles.uspText}>{item.text}</span>
     </li>
@@ -19,22 +19,31 @@ function UspItem({ item, index }) {
 }
 
 export default function Quality() {
-  const leftRef  = useRef(null);
-  const rightRef = useRef(null);
+  const leftRef = useRef(null);
+  const uspRef  = useRef(null);   /* wrapper na linię + listę */
 
+  /* Lewa — fade-in */
   useEffect(() => {
-    const refs = [leftRef, rightRef];
-    const observers = refs.map((ref) => {
-      const el = ref.current;
-      if (!el) return null;
-      const io = new IntersectionObserver(
-        ([e]) => { if (e.isIntersecting) { el.classList.add(styles.visible); io.disconnect(); } },
-        { threshold: 0.15 }
-      );
-      io.observe(el);
-      return io;
-    });
-    return () => observers.forEach((io) => io?.disconnect());
+    const el = leftRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { el.classList.add(styles.visible); io.disconnect(); } },
+      { threshold: 0.15 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  /* Linia + USP — jeden observer na wrapperze */
+  useEffect(() => {
+    const el = uspRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { el.classList.add(styles.animate); io.disconnect(); } },
+      { threshold: 0.2 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
   }, []);
 
   return (
@@ -60,16 +69,18 @@ export default function Quality() {
           </a>
         </div>
 
-        {/* PRAWA — USP + dekoracja */}
-        <div className={`${styles.right} ${styles.fadeIn}`} ref={rightRef}>
-          <p className={styles.handwritten} aria-hidden="true">
-            Detale<br />tworzą<br />wyjątkowe<br />wnętrza
-          </p>
-          <ol className={styles.uspList}>
-            {uspItems.map((item, i) => (
-              <UspItem key={item.id} item={item} index={i} />
-            ))}
-          </ol>
+        {/* PRAWA — animowana linia + USP */}
+        <div className={styles.right}>
+          <div className={styles.uspWrap} ref={uspRef}>
+            {/* Pionowa linia rysuje się od góry do dołu */}
+            <div className={styles.line} aria-hidden="true" />
+
+            <ol className={styles.uspList}>
+              {uspItems.map((item, i) => (
+                <UspItem key={item.id} item={item} index={i} />
+              ))}
+            </ol>
+          </div>
         </div>
 
       </Container>
