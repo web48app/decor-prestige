@@ -3,35 +3,43 @@ import Container from '../../ui/Container/Container';
 import { services } from '../../../data/services';
 import styles from './Services.module.css';
 
-/* ---- Inline SVG icons ---- */
+/* ---- Inline SVG icons — styl jak Hero (strokeWidth 1.2, eleganckie) ---- */
+const IconDoradztwo = () => (
+  <svg viewBox="0 0 24 24" width="22" height="22" fill="none"
+       stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"
+       aria-hidden="true">
+    {/* chat bubble z gwiazdką / doradztwo */}
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+    <path d="M12 8v4M12 12l2-2" />
+  </svg>
+);
+
+const IconSzycie = () => (
+  <svg viewBox="0 0 24 24" width="22" height="22" fill="none"
+       stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"
+       aria-hidden="true">
+    {/* igła z nicią */}
+    <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z" />
+    <path d="M16 8L2 22" />
+    <path d="M17.5 15H9" />
+  </svg>
+);
+
+const IconMontaz = () => (
+  <svg viewBox="0 0 24 24" width="22" height="22" fill="none"
+       stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"
+       aria-hidden="true">
+    {/* okno z ramą */}
+    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+    <path d="M3 12h18M12 3v18" />
+    <path d="M3 3l2 2M21 3l-2 2M3 21l2-2M21 21l-2-2" />
+  </svg>
+);
+
 const icons = {
-  doradztwo: (
-    <svg viewBox="0 0 24 24" width="22" height="22" fill="none"
-         stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-      {/* ruler / measuring tape — doradztwo */}
-      <path d="M2 6h20v12H2z" />
-      <path d="M6 6v4M10 6v3M14 6v4M18 6v3" />
-    </svg>
-  ),
-  szycie: (
-    <svg viewBox="0 0 24 24" width="22" height="22" fill="none"
-         stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-      {/* sewing machine silhouette */}
-      <path d="M3 17h18v2H3z" />
-      <path d="M5 17V8a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v9" />
-      <circle cx="8" cy="12" r="1.5" />
-      <path d="M8 13.5V17" />
-      <path d="M12 5v4M14 7h3" />
-    </svg>
-  ),
-  montaz: (
-    <svg viewBox="0 0 24 24" width="22" height="22" fill="none"
-         stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-      {/* window frame */}
-      <rect x="3" y="3" width="18" height="18" rx="1" />
-      <path d="M3 12h18M12 3v18" />
-    </svg>
-  ),
+  doradztwo: <IconDoradztwo />,
+  szycie:    <IconSzycie />,
+  montaz:    <IconMontaz />,
 };
 
 function ServiceCard({ service, index }) {
