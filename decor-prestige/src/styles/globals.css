@@ -57,6 +57,12 @@ section {
   padding-bottom: var(--section-padding-y);
 }
 
+/* Hero has its own full-bleed layout — zero out section padding */
+#start {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 /* ---- Selection ---- */
 ::selection {
   background: var(--color-accent-light);

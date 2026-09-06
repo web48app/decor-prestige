@@ -22,7 +22,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 60% center;
+  object-position: 60% 65%;
   display: block;
   z-index: 0;
 }
@@ -51,8 +51,13 @@
 .textCol {
   display: flex;
   flex-direction: column;
-  padding: clamp(7rem, 11vw, 10rem) clamp(3rem, 18vw, 16rem) var(--space-12);
-  max-width: 640px;
+  margin-left: clamp(2rem, 10vw, 10rem);
+  padding-top: clamp(7rem, 11vw, 10rem);
+  padding-right: var(--space-8);
+  padding-bottom: var(--space-12);
+  padding-left: var(--space-6);
+  max-width: 500px;
+  width: 100%;
 }
 
 .eyebrow {
