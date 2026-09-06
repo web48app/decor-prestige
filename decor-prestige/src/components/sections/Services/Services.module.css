@@ -111,7 +111,7 @@
 .cardImageWrap {
   position: relative;
   width: 100%;
-  height: 320px;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   background: var(--color-bg-tertiary);
   flex-shrink: 0;
