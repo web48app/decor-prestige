@@ -65,9 +65,9 @@ export default function Products() {
 
   return (
     <section id="produkty" className={styles.section} aria-labelledby="products-heading">
-      <Container>
 
-        {/* ---- Header ---- */}
+      {/* Header wewnątrz Container */}
+      <Container>
         <div className={`${styles.header} ${styles.fadeIn}`} ref={headingRef}>
           <div className={styles.headerLeft}>
             <p className={styles.eyebrow}>Nasze Produkty</p>
@@ -81,15 +81,15 @@ export default function Products() {
             </a>
           </div>
         </div>
-
-        {/* ---- Product grid ---- */}
-        <div className={styles.grid}>
-          {products.map((p, i) => (
-            <ProductItem key={p.id} product={p} index={i} />
-          ))}
-        </div>
-
       </Container>
+
+      {/* Grid full-width — poza Container */}
+      <div className={styles.grid}>
+        {products.map((p, i) => (
+          <ProductItem key={p.id} product={p} index={i} />
+        ))}
+      </div>
+
     </section>
   );
 }
