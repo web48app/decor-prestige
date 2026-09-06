@@ -10,6 +10,9 @@
   flex-direction: column;
   overflow: hidden;
   background-color: var(--color-bg);
+  /* zero out the global section padding */
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 /* ---- Background image ---- */
@@ -48,8 +51,8 @@
 .textCol {
   display: flex;
   flex-direction: column;
-  padding: clamp(7rem, 11vw, 10rem) clamp(var(--container-padding), 7vw, 7rem) var(--space-12);
-  max-width: 600px;
+  padding: clamp(7rem, 11vw, 10rem) clamp(3rem, 18vw, 16rem) var(--space-12);
+  max-width: 640px;
 }
 
 .eyebrow {
@@ -99,10 +102,8 @@
 .uspWrap {
   position: relative;
   z-index: 1;
-  background: rgba(253, 250, 246, 0.88);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-top: 1px solid rgba(201, 169, 110, 0.15);
+  background: rgba(253, 250, 246, 0.94);
+  border-top: 1px solid var(--color-border-light);
 }
 
 .uspList {
@@ -129,7 +130,7 @@
   top: 25%;
   height: 50%;
   width: 1px;
-  background: rgba(201, 169, 110, 0.25);
+  background: var(--color-border);
 }
 
 .uspIcon { flex-shrink: 0; color: var(--color-accent); }
