@@ -1,3 +1,174 @@
+/* ============================================================
+   CTA — wezwanie do działania
+   Tło: cta-bg.png
+   Układ: tekst (L) + akcje (P)
+   ============================================================ */
+
 .section {
-  /* Styles zostaną dodane w osobnym prompcie */
+  position: relative;
+  overflow: hidden;
+
+  background-image: url('/cta-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Gradient overlay — ciemniejszy po lewej */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    rgba(20, 14, 8, 0.90) 0%,
+    rgba(20, 14, 8, 0.78) 45%,
+    rgba(20, 14, 8, 0.55) 100%
+  );
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ---- Animacja wejścia ---- */
+.fadeIn {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.fadeIn.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---- Wewnętrzny układ ---- */
+.inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(var(--space-10), 8vw, var(--space-24));
+  padding-top: clamp(5rem, 10vw, 8rem);
+  padding-bottom: clamp(5rem, 10vw, 8rem);
+}
+
+/* ============================================================
+   TEKST (lewa strona)
+   ============================================================ */
+
+.text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  max-width: 580px;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-accent-light);
+}
+
+.heading {
+  font-family: var(--font-heading);
+  font-size: clamp(2.8rem, 4.8vw, 4.4rem);
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: #F5EDE0;
+}
+
+.lead {
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  line-height: 1.65;
+  color: rgba(245, 237, 224, 0.70);
+}
+
+/* ============================================================
+   AKCJE (prawa strona)
+   ============================================================ */
+
+.actions {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+/* Główny button */
+.ctaBtn {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #1A120A;
+  background: var(--color-accent-light);
+  border: 1.5px solid var(--color-accent-light);
+  border-radius: var(--radius-full);
+  padding: var(--space-4) var(--space-10);
+  transition:
+    background var(--transition-normal),
+    color var(--transition-normal),
+    border-color var(--transition-normal);
+}
+
+.ctaBtn:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #F5EDE0;
+}
+
+/* Link telefoniczny */
+.phoneLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-body);
+  font-size: var(--font-size-lg);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: rgba(245, 237, 224, 0.75);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.phoneLink:hover {
+  color: var(--color-accent-light);
+}
+
+/* ============================================================
+   RESPONSIVE — MOBILE
+   ============================================================ */
+
+@media (max-width: 760px) {
+  .inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-10);
+  }
+
+  .actions {
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .ctaBtn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .heading {
+    font-size: clamp(2.4rem, 9vw, 3.2rem);
+  }
 }
