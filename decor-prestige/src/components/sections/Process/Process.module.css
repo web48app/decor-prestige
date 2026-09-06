@@ -35,7 +35,7 @@
   position: absolute;
   bottom: 0;
   left: clamp(-10px, -0.5vw, 0px);
-  width: clamp(300px, 38vw, 560px);
+  width: clamp(380px, 50vw, 720px);
   /* dół przyklejony do sekcji, góra gałązek wychodzi powyżej */
   opacity: 0.88;
   z-index: 3;
