@@ -140,11 +140,6 @@ export default function Footer() {
 
         </div>
 
-        {/* Dekoracja — footer-bg.png (tekst jest w grafice) */}
-        <div className={styles.imgWrap} aria-hidden="true">
-          <img src="/footer-bg.png" alt="" className={styles.img} />
-        </div>
-
       </div>
 
       {/* ---- Dolny pasek ---- */}

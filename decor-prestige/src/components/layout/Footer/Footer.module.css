@@ -4,8 +4,35 @@
    ============================================================ */
 
 .footer {
-  background: #140E08;
+  position: relative;
   font-family: var(--font-body);
+
+  background-image: url('/footer-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Ciemna nakładka — tekst handwritten w grafice widoczny po prawej */
+.footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    rgba(20, 14, 8, 0.97) 0%,
+    rgba(20, 14, 8, 0.92) 50%,
+    rgba(20, 14, 8, 0.60) 100%
+  );
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Wszystko ponad nakładką */
+.main,
+.bar {
+  position: relative;
+  z-index: 1;
 }
 
 /* ============================================================
@@ -206,22 +233,6 @@
   font-size: var(--font-size-xs);
   color: rgba(245, 237, 224, 0.35);
   margin-top: 2px;
-}
-
-/* ---- Obraz dekoracyjny ---- */
-.imgWrap {
-  flex: 0 0 clamp(180px, 22%, 320px);
-  overflow: hidden;
-  position: relative;
-}
-
-.img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  filter: brightness(0.82);
 }
 
 /* ============================================================
