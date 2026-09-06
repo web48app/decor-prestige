@@ -146,7 +146,7 @@
 /* ---- Pionowa linia rysuje się od góry do dołu ---- */
 .line {
   position: absolute;
-  left: 18px;          /* środek kółka (36px / 2) */
+  left: 26px;          /* środek kółka (52px / 2) */
   top: 0;
   bottom: 0;
   width: 1px;
@@ -179,7 +179,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  min-width: 280px;
+  min-width: 340px;
 }
 
 /* ============================================================
@@ -189,8 +189,8 @@
 .uspItem {
   display: flex;
   align-items: center;
-  gap: var(--space-5);
-  padding: var(--space-5) 0;
+  gap: var(--space-6);
+  padding: var(--space-6) 0;
 
   /* Domyślnie ukryty — pojawi się po .animate */
   opacity: 0;
@@ -216,8 +216,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   border: 1px solid rgba(201, 169, 110, 0.35);
   background: rgba(20, 14, 8, 0.6);
@@ -238,7 +238,7 @@
 /* ---- Tekst USP ---- */
 .uspText {
   font-family: var(--font-body);
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-md);
   font-weight: 400;
   line-height: 1.45;
   color: rgba(245, 237, 224, 0.88);

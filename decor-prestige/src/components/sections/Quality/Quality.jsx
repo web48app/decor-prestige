@@ -11,7 +11,7 @@ function UspItem({ item, index }) {
       style={{ '--usp-delay': `${0.25 + index * 0.2}s` }}
     >
       <span className={styles.uspDot} aria-hidden="true">
-        <Icon size={18} strokeWidth={1.3} />
+        <Icon size={26} strokeWidth={1.2} />
       </span>
       <span className={styles.uspText}>{item.text}</span>
     </li>
