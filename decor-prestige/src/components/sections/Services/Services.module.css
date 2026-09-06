@@ -111,7 +111,7 @@
 .cardImageWrap {
   position: relative;
   width: 100%;
-  height: 260px;
+  height: 320px;
   overflow: hidden;
   background: var(--color-bg-tertiary);
   flex-shrink: 0;
@@ -239,7 +239,7 @@
   }
 
   .cardImageWrap {
-    height: 220px;
+    height: 260px;
   }
 
   .heading {
