@@ -28,7 +28,7 @@
   align-items: flex-end;
   gap: var(--space-16);
   padding-top: clamp(2rem, 3vw, 3.5rem);
-  padding-bottom: clamp(var(--space-10), 4vw, var(--space-14));
+  padding-bottom: clamp(var(--space-12), 5vw, var(--space-16));
 }
 
 .headerLeft {
