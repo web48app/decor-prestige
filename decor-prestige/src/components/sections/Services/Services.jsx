@@ -31,8 +31,6 @@ function ServiceItem({ service, index }) {
       ref={ref}
       style={{ transitionDelay: `${index * 0.13}s` }}
     >
-      <span className={styles.num}>{meta.num}</span>
-
       <div className={styles.imageWrap}>
         <img
           src={service.image}
@@ -45,6 +43,7 @@ function ServiceItem({ service, index }) {
       </div>
 
       <div className={styles.caption}>
+        <span className={styles.num}>{meta.num}</span>
         <h3 className={styles.title}>{service.title}</h3>
         <p className={styles.desc}>{service.description}</p>
       </div>
