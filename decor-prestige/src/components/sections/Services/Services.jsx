@@ -1,87 +1,77 @@
 import { useEffect, useRef } from 'react';
-import { Lightbulb, Scissors, Wrench } from 'lucide-react';
 import Container from '../../ui/Container/Container';
 import { services } from '../../../data/services';
 import styles from './Services.module.css';
 
-const icons = {
-  doradztwo: <Lightbulb size={22} strokeWidth={1.2} />,
-  szycie:    <Scissors  size={22} strokeWidth={1.2} />,
-  montaz:    <Wrench    size={22} strokeWidth={1.2} />,
+const serviceMeta = {
+  doradztwo: { num: '01' },
+  szycie:    { num: '02' },
+  montaz:    { num: '03' },
 };
 
-function ServiceCard({ service, index }) {
+function ServiceItem({ service, index }) {
   const ref = useRef(null);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add(styles.visible);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.15 }
+    const io = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { el.classList.add(styles.visible); io.disconnect(); } },
+      { threshold: 0.08 }
     );
-    observer.observe(el);
-    return () => observer.disconnect();
+    io.observe(el);
+    return () => io.disconnect();
   }, []);
+
+  const meta = serviceMeta[service.id] || { num: '0' + (index + 1) };
 
   return (
     <article
-      className={`${styles.card} ${styles.fadeIn}`}
+      className={`${styles.item} ${styles.fadeIn}`}
       ref={ref}
-      style={{ transitionDelay: `${index * 0.12}s` }}
+      style={{ transitionDelay: `${index * 0.13}s` }}
     >
-      <div className={styles.cardImageWrap}>
+      <span className={styles.num}>{meta.num}</span>
+
+      <div className={styles.imageWrap}>
         <img
           src={service.image}
           alt={service.imageAlt}
-          className={styles.cardImage}
+          className={styles.image}
           loading="lazy"
           onError={(e) => { e.currentTarget.style.display = 'none'; }}
         />
-        <div className={styles.cardImageFallback} aria-hidden="true" />
+        <div className={styles.imageFallback} aria-hidden="true" />
       </div>
 
-      <div className={styles.cardBody}>
-        <div className={styles.cardIcon} aria-hidden="true">
-          {icons[service.id]}
-        </div>
-        <h3 className={styles.cardTitle}>{service.title}</h3>
-        <p className={styles.cardDesc}>{service.description}</p>
+      <div className={styles.caption}>
+        <h3 className={styles.title}>{service.title}</h3>
+        <p className={styles.desc}>{service.description}</p>
       </div>
     </article>
   );
 }
 
 export default function Services() {
-  const headingRef = useRef(null);
+  const headerRef = useRef(null);
 
   useEffect(() => {
-    const el = headingRef.current;
+    const el = headerRef.current;
     if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add(styles.visible);
-          observer.disconnect();
-        }
-      },
+    const io = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { el.classList.add(styles.visible); io.disconnect(); } },
       { threshold: 0.2 }
     );
-    observer.observe(el);
-    return () => observer.disconnect();
+    io.observe(el);
+    return () => io.disconnect();
   }, []);
 
   return (
     <section id="oferta" className={styles.section} aria-labelledby="services-heading">
       <Container>
 
-        {/* ---- Section header ---- */}
-        <div className={`${styles.header} ${styles.fadeIn}`} ref={headingRef}>
+        {/* ---- Nagłówek ---- */}
+        <div className={`${styles.header} ${styles.fadeIn}`} ref={headerRef}>
           <div className={styles.headerLeft}>
             <p className={styles.eyebrow}>Nasze Usługi</p>
             <h2 id="services-heading" className={styles.heading}>
@@ -97,10 +87,10 @@ export default function Services() {
           </div>
         </div>
 
-        {/* ---- Cards ---- */}
-        <div className={styles.cards}>
+        {/* ---- Editorial grid — 3 kolumny ---- */}
+        <div className={styles.grid}>
           {services.map((s, i) => (
-            <ServiceCard key={s.id} service={s} index={i} />
+            <ServiceItem key={s.id} service={s} index={i} />
           ))}
         </div>
 
