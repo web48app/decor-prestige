@@ -130,7 +130,7 @@
 
 /* Doradztwo — przesuń kadr w prawo */
 .item:first-child .image {
-  object-position: left center;
+  object-position: 25% center;
 }
 
 .imageFallback {
