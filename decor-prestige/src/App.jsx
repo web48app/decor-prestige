@@ -1,8 +1,9 @@
+import { Routes, Route } from 'react-router-dom';
 import './styles/globals.css';
 
-import Navbar  from './components/layout/Navbar/Navbar';
-import Footer  from './components/layout/Footer/Footer';
-
+/* ---- Landing page ---- */
+import Navbar   from './components/layout/Navbar/Navbar';
+import Footer   from './components/layout/Footer/Footer';
 import Hero     from './components/sections/Hero/Hero';
 import Intro    from './components/sections/Intro/Intro';
 import Services from './components/sections/Services/Services';
@@ -15,11 +16,13 @@ import Reviews  from './components/sections/Reviews/Reviews';
 import CTA      from './components/sections/CTA/CTA';
 import Contact  from './components/sections/Contact/Contact';
 
-export default function App() {
+/* ---- Strona kontaktu ---- */
+import ContactPage from './pages/ContactPage/ContactPage';
+
+function HomePage() {
   return (
     <>
       <Navbar />
-
       <main>
         <Hero />
         <Intro />
@@ -33,8 +36,16 @@ export default function App() {
         <CTA />
         <Contact />
       </main>
-
       <Footer />
     </>
+  );
+}
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/"        element={<HomePage />} />
+      <Route path="/kontakt" element={<ContactPage />} />
+    </Routes>
   );
 }
