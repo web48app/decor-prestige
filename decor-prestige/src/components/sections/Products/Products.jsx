@@ -3,14 +3,17 @@ import Container from '../../ui/Container/Container';
 import { products } from '../../../data/products';
 import styles from './Products.module.css';
 
-/* ---- Opisy głównych produktów ---- */
-const featuredMeta = {
+/* ---- Meta dla produktów ---- */
+const productMeta = {
   zaslony: { num: '01', desc: 'Oprawa okna, która nadaje wnętrzu charakter.' },
   tkaniny: { num: '02', desc: 'Starannie dobrane materiały i faktury.' },
+  plisy:   { num: '03', desc: null },
+  rolety:  { num: '04', desc: null },
+  karnisze:{ num: '05', desc: null },
 };
 
-/* ---- Duże zdjęcie edytorialne ---- */
-function FeaturedCard({ product, offset }) {
+/* ---- Pojedyncze zdjęcie ---- */
+function ProductPhoto({ product, className, captionFull = false }) {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -18,19 +21,16 @@ function FeaturedCard({ product, offset }) {
     if (!el) return;
     const io = new IntersectionObserver(
       ([e]) => { if (e.isIntersecting) { el.classList.add(styles.visible); io.disconnect(); } },
-      { threshold: 0.1 }
+      { threshold: 0.08 }
     );
     io.observe(el);
     return () => io.disconnect();
   }, []);
 
-  const meta = featuredMeta[product.id] || { num: '0?', desc: '' };
+  const meta = productMeta[product.id] || { num: '—', desc: null };
 
   return (
-    <article
-      className={`${styles.featuredCard} ${styles.fadeIn} ${offset ? styles.cardOffset : ''}`}
-      ref={ref}
-    >
+    <article className={`${styles.photoItem} ${styles.fadeIn} ${className || ''}`} ref={ref}>
       <div className={styles.imageWrap}>
         <img
           src={product.image}
@@ -44,33 +44,32 @@ function FeaturedCard({ product, offset }) {
       <div className={styles.caption}>
         <span className={styles.num}>{meta.num}</span>
         <h3 className={styles.name}>{product.title}</h3>
-        <p className={styles.desc}>{meta.desc}</p>
+        {captionFull && meta.desc && (
+          <p className={styles.desc}>{meta.desc}</p>
+        )}
       </div>
     </article>
   );
 }
 
 /* ============================================================
-   PRODUCTS — editorial layout
+   PRODUCTS — editorial 2 + 3 layout
    ============================================================ */
 export default function Products() {
-  const headerRef    = useRef(null);
-  const secondaryRef = useRef(null);
+  const headerRef = useRef(null);
 
   useEffect(() => {
-    const els = [headerRef.current, secondaryRef.current].filter(Boolean);
-    const observers = els.map(el => {
-      const io = new IntersectionObserver(
-        ([e]) => { if (e.isIntersecting) { el.classList.add(styles.visible); io.disconnect(); } },
-        { threshold: 0.15 }
-      );
-      io.observe(el);
-      return io;
-    });
-    return () => observers.forEach(io => io.disconnect());
+    const el = headerRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { el.classList.add(styles.visible); io.disconnect(); } },
+      { threshold: 0.2 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
   }, []);
 
-  const featured  = products.filter(p => ['zaslony', 'tkaniny'].includes(p.id));
+  const primary   = products.filter(p => ['zaslony', 'tkaniny'].includes(p.id));
   const secondary = products.filter(p => ['plisy', 'rolety', 'karnisze'].includes(p.id));
 
   return (
@@ -93,22 +92,25 @@ export default function Products() {
           </div>
         </div>
 
-        {/* ---- Dwa główne zdjęcia — editorial ---- */}
-        <div className={styles.mainGrid}>
-          {featured.map((p, i) => (
-            <FeaturedCard key={p.id} product={p} offset={i === 1} />
+        {/* ---- Górny rząd — 2 duże zdjęcia ---- */}
+        <div className={styles.primaryRow}>
+          {primary.map(p => (
+            <ProductPhoto
+              key={p.id}
+              product={p}
+              captionFull={true}
+            />
           ))}
         </div>
 
-        {/* ---- Pozostałe produkty — minimalistyczny rząd ---- */}
-        <div className={`${styles.secondary} ${styles.fadeIn}`} ref={secondaryRef}>
-          {secondary.map((p, i) => (
-            <span key={p.id} className={styles.secondaryGroup}>
-              <a href="#kontakt" className={styles.secondaryItem}>{p.title}</a>
-              {i < secondary.length - 1 && (
-                <span className={styles.secondaryDot} aria-hidden="true">·</span>
-              )}
-            </span>
+        {/* ---- Dolny rząd — 3 mniejsze zdjęcia ---- */}
+        <div className={styles.secondaryRow}>
+          {secondary.map(p => (
+            <ProductPhoto
+              key={p.id}
+              product={p}
+              captionFull={false}
+            />
           ))}
         </div>
 

@@ -1,6 +1,7 @@
 /* ============================================================
-   PRODUCTS — editorial / luxury interior layout
-   2 duże zdjęcia (55/45) + asymetria + rząd drugorzędnych
+   PRODUCTS — editorial 2 + 3
+   Górny rząd: 2 duże zdjęcia 50/50 (z opisem)
+   Dolny rząd: 3 mniejsze zdjęcia 33/33/33 (tylko numer + nazwa)
    ============================================================ */
 
 .section {
@@ -11,7 +12,7 @@
 /* ---- Fade-in ---- */
 .fadeIn {
   opacity: 0;
-  transform: translateY(24px);
+  transform: translateY(22px);
   transition: opacity 0.85s ease, transform 0.85s ease;
 }
 
@@ -21,7 +22,7 @@
 }
 
 /* ============================================================
-   HEADER
+   NAGŁÓWEK
    ============================================================ */
 
 .header {
@@ -30,7 +31,7 @@
   justify-content: space-between;
   gap: var(--space-8);
   padding-top: clamp(4rem, 8vw, 7rem);
-  padding-bottom: clamp(var(--space-10), 5vw, var(--space-14));
+  padding-bottom: clamp(var(--space-12), 5vw, var(--space-16));
 }
 
 .headerLeft { flex: 1; }
@@ -81,37 +82,53 @@
 }
 
 /* ============================================================
-   GŁÓWNY EDITORIAL GRID — 55 / 45
+   GÓRNY RZĄD — 2 duże zdjęcia (50 / 50)
    ============================================================ */
 
-.mainGrid {
+.primaryRow {
   display: grid;
-  grid-template-columns: 55fr 45fr;
+  grid-template-columns: 1fr 1fr;
   gap: clamp(var(--space-4), 2.5vw, var(--space-8));
-  align-items: start;
-  margin-bottom: clamp(var(--space-10), 5vw, var(--space-16));
+  margin-bottom: clamp(var(--space-8), 4vw, var(--space-12));
 }
 
-/* ---- Karta główna ---- */
-.featuredCard {
+/* ============================================================
+   DOLNY RZĄD — 3 mniejsze zdjęcia (33 / 33 / 33)
+   ============================================================ */
+
+.secondaryRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(var(--space-3), 2vw, var(--space-6));
+  padding-bottom: clamp(4rem, 8vw, 7rem);
+}
+
+/* ============================================================
+   WSPÓLNA KARTA PRODUKTU
+   ============================================================ */
+
+.photoItem {
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
+  gap: var(--space-4);
 }
 
-/* Prawa karta przesunieta w dół — subtelna asymetria */
-.cardOffset {
-  margin-top: clamp(var(--space-10), 6vw, var(--space-20));
-  transition-delay: 0.15s;
-}
-
-/* ---- Zdjęcie ---- */
+/* ---- Wrapper zdjęcia ---- */
 .imageWrap {
   position: relative;
   width: 100%;
-  aspect-ratio: 3 / 4;
   overflow: hidden;
   background: var(--color-bg-secondary);
+}
+
+/* Górny rząd — proporcje 4:3 */
+.primaryRow .imageWrap {
+  aspect-ratio: 4 / 3;
+}
+
+/* Dolny rząd — proporcje 3:2 (wyraźnie mniejszy) */
+.secondaryRow .imageWrap {
+  aspect-ratio: 3 / 2;
 }
 
 .image {
@@ -125,7 +142,7 @@
   transition: transform 0.7s ease;
 }
 
-.featuredCard:hover .image {
+.photoItem:hover .image {
   transform: scale(1.02);
 }
 
@@ -133,36 +150,51 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    160deg,
+    150deg,
     var(--color-bg-secondary) 0%,
     var(--color-bg-tertiary) 100%
   );
   z-index: -1;
 }
 
-/* ---- Podpis ---- */
+/* ============================================================
+   PODPISY
+   ============================================================ */
+
 .caption {
   display: flex;
   flex-direction: column;
-  gap: var(--space-1);
-  padding: 0 var(--space-1);
+  gap: 2px;
 }
 
 .num {
   font-family: var(--font-body);
   font-size: var(--font-size-xs);
   font-weight: 400;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   color: var(--color-accent);
 }
 
-.name {
+/* Górny rząd — nazwa większa */
+.primaryRow .name {
   font-family: var(--font-heading);
-  font-size: clamp(1.5rem, 2.2vw, 2.2rem);
+  font-size: clamp(1.4rem, 2vw, 2rem);
   font-weight: 300;
   color: var(--color-text);
   letter-spacing: -0.01em;
   line-height: 1.1;
+  margin-top: var(--space-1);
+}
+
+/* Dolny rząd — nazwa mniejsza */
+.secondaryRow .name {
+  font-family: var(--font-heading);
+  font-size: clamp(1rem, 1.4vw, 1.3rem);
+  font-weight: 300;
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  margin-top: 2px;
 }
 
 .desc {
@@ -170,50 +202,7 @@
   font-size: var(--font-size-sm);
   color: var(--color-text-muted);
   line-height: 1.6;
-  margin-top: var(--space-1);
-}
-
-/* ============================================================
-   DRUGORZĘDNE PRODUKTY — minimalistyczny rząd z separatorami
-   ============================================================ */
-
-.secondary {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0;
-  padding: var(--space-6) 0 clamp(4rem, 8vw, 7rem);
-  border-top: 1px solid rgba(26, 18, 10, 0.07);
-}
-
-.secondaryGroup {
-  display: inline-flex;
-  align-items: center;
-}
-
-.secondaryItem {
-  font-family: var(--font-heading);
-  font-size: clamp(1.05rem, 1.6vw, 1.4rem);
-  font-weight: 300;
-  color: var(--color-text-muted);
-  text-decoration: none;
-  letter-spacing: 0.01em;
-  transition: color var(--transition-fast);
-  padding: var(--space-2) var(--space-3);
-}
-
-.secondaryItem:hover {
-  color: var(--color-text);
-}
-
-.secondaryDot {
-  color: var(--color-accent);
-  opacity: 0.4;
-  font-size: 1.1rem;
-  line-height: 1;
-  padding: 0 var(--space-1);
-  user-select: none;
+  margin-top: var(--space-2);
 }
 
 /* ============================================================
@@ -221,26 +210,6 @@
    ============================================================ */
 
 @media (max-width: 760px) {
-  .mainGrid {
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-5);
-  }
-
-  /* Na tablecie mniejszy offset */
-  .cardOffset {
-    margin-top: clamp(var(--space-6), 4vw, var(--space-10));
-  }
-
-  .imageWrap {
-    aspect-ratio: 2 / 3;
-  }
-}
-
-/* ============================================================
-   RESPONSIVE — MOBILE (560px)
-   ============================================================ */
-
-@media (max-width: 560px) {
   .header {
     flex-direction: column;
     align-items: flex-start;
@@ -249,27 +218,56 @@
   }
 
   .heading {
-    font-size: clamp(1.8rem, 6.5vw, 2.4rem);
+    font-size: clamp(1.8rem, 6vw, 2.4rem);
   }
 
-  .mainGrid {
+  /* Górny: 2 zdjęcia obok siebie, trochę mniejsze */
+  .primaryRow {
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+  }
+
+  /* Dolny: 2 + 1 — trzecie zdjęcie na pełną szerokość */
+  .secondaryRow {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .secondaryRow .photoItem:nth-child(3) {
+    grid-column: 1 / -1;
+  }
+
+  .secondaryRow .photoItem:nth-child(3) .imageWrap {
+    aspect-ratio: 16 / 7;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — MOBILE (480px)
+   ============================================================ */
+
+@media (max-width: 480px) {
+  /* Górny: 1 kolumna */
+  .primaryRow {
     grid-template-columns: 1fr;
-    gap: var(--space-12);
+    gap: var(--space-8);
   }
 
-  /* Na mobile brak offsetu — układ pionowy */
-  .cardOffset {
-    margin-top: 0;
-    transition-delay: 0.1s;
+  .primaryRow .imageWrap {
+    aspect-ratio: 3 / 2;
   }
 
-  .imageWrap {
-    aspect-ratio: 4 / 3;
+  /* Dolny: 1 kolumna */
+  .secondaryRow {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
   }
 
-  .secondary {
-    gap: var(--space-2);
-    flex-direction: row;
-    justify-content: center;
+  .secondaryRow .photoItem:nth-child(3) {
+    grid-column: auto;
+  }
+
+  .secondaryRow .imageWrap,
+  .secondaryRow .photoItem:nth-child(3) .imageWrap {
+    aspect-ratio: 3 / 2;
   }
 }
