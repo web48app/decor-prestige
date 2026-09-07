@@ -4,36 +4,12 @@
    ============================================================ */
 
 .footer {
-  position: relative;
   font-family: var(--font-body);
 
   background-image: url('/footer-bg.png');
   background-size: cover;
-  background-position: right center;   /* rośliny i napis po prawej */
+  background-position: center;
   background-repeat: no-repeat;
-}
-
-/* Gradient: bardzo ciemny po lewej (tekst czytelny), przeźroczysty po prawej (image widoczny) */
-.footer::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to right,
-    rgba(20, 14, 8, 0.98) 0%,
-    rgba(20, 14, 8, 0.97) 58%,
-    rgba(20, 14, 8, 0.72) 74%,
-    rgba(20, 14, 8, 0.12) 100%
-  );
-  z-index: 0;
-  pointer-events: none;
-}
-
-/* Wszystko ponad nakładką */
-.main,
-.bar {
-  position: relative;
-  z-index: 1;
 }
 
 /* ============================================================
