@@ -5,7 +5,7 @@ import styles from './Footer.module.css';
 /* ---- Social icons (lucide nie eksportuje tych ikon) ---- */
 function IconFacebook() {
   return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
     </svg>
   );
@@ -13,18 +13,10 @@ function IconFacebook() {
 
 function IconInstagram() {
   return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
       <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
       <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
-    </svg>
-  );
-}
-
-function IconPinterest() {
-  return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.04-2.83.18-.77 1.22-5.16 1.22-5.16s-.31-.62-.31-1.55c0-1.45.84-2.54 1.89-2.54.89 0 1.32.67 1.32 1.47 0 .9-.57 2.24-.86 3.49-.25 1.04.51 1.89 1.53 1.89 1.84 0 3.07-2.35 3.07-5.13 0-2.12-1.43-3.7-4-3.7-2.91 0-4.72 2.18-4.72 4.59 0 .83.24 1.42.62 1.87.17.21.2.29.13.53-.06.22-.19.75-.24.96-.08.3-.32.41-.59.3-1.64-.69-2.44-2.55-2.44-4.64 0-3.44 2.89-7.55 8.62-7.55 4.6 0 7.63 3.33 7.63 6.92 0 4.73-2.62 8.24-6.47 8.24-1.3 0-2.52-.7-2.94-1.49l-.82 3.16c-.29 1.11-1.08 2.5-1.62 3.35.88.27 1.83.42 2.81.42 5.52 0 10-4.48 10-10S17.52 2 12 2z"/>
     </svg>
   );
 }
@@ -72,9 +64,6 @@ export default function Footer() {
               </a>
               <a href="#" className={styles.socialLink} aria-label="Instagram" target="_blank" rel="noopener noreferrer">
                 <IconInstagram />
-              </a>
-              <a href="#" className={styles.socialLink} aria-label="Pinterest" target="_blank" rel="noopener noreferrer">
-                <IconPinterest />
               </a>
             </div>
           </div>
