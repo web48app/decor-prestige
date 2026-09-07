@@ -15,18 +15,19 @@
   background-repeat: no-repeat;
 }
 
-/* Delikatna nakładka po lewej — poprawia czytelność kolumn,
-   zanika po prawej aby slogan z obrazu był widoczny */
+/* Gradient od lewej do prawej — wzmacnia czytelność kolumn,
+   całkowicie zanika przed sloganem z obrazu po prawej */
 .footer::before {
   content: '';
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to right,
-    rgba(10, 6, 2, 0.62) 0%,
-    rgba(10, 6, 2, 0.50) 48%,
-    rgba(10, 6, 2, 0.08) 70%,
-    rgba(10, 6, 2, 0.00) 100%
+    rgba(10, 6, 2, 0.85) 0%,
+    rgba(10, 6, 2, 0.78) 25%,
+    rgba(10, 6, 2, 0.55) 48%,
+    rgba(10, 6, 2, 0.12) 65%,
+    rgba(10, 6, 2, 0.00) 78%
   );
   z-index: 0;
   pointer-events: none;
