@@ -128,6 +128,11 @@
   transform: scale(1.02);
 }
 
+/* Doradztwo — przesuń kadr w prawo */
+.item:first-child .image {
+  object-position: right center;
+}
+
 .imageFallback {
   position: absolute;
   inset: 0;
