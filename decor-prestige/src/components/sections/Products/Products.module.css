@@ -30,8 +30,8 @@
   align-items: flex-end;
   justify-content: space-between;
   gap: var(--space-8);
-  padding-top: clamp(4rem, 8vw, 7rem);
-  padding-bottom: clamp(var(--space-12), 5vw, var(--space-16));
+  padding-top: clamp(3rem, 5vw, 5.5rem);
+  padding-bottom: clamp(var(--space-8), 3vw, var(--space-10));
 }
 
 .headerLeft { flex: 1; }
@@ -89,7 +89,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(var(--space-4), 2.5vw, var(--space-8));
-  margin-bottom: clamp(var(--space-8), 4vw, var(--space-12));
+  margin-bottom: clamp(var(--space-6), 3vw, var(--space-8));
 }
 
 /* ============================================================
@@ -100,7 +100,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: clamp(var(--space-3), 2vw, var(--space-6));
-  padding-bottom: clamp(4rem, 8vw, 7rem);
+  padding-bottom: clamp(3rem, 5vw, 5.5rem);
 }
 
 /* ============================================================
