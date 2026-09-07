@@ -14,6 +14,29 @@
   background-repeat: no-repeat;
 }
 
+/* Przenikanie z ciemnej Quality (góra) i do ciemnego Footera (dół) */
+.section::before,
+.section::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.section::before {
+  top: 0;
+  height: 160px;
+  background: linear-gradient(to bottom, rgba(15, 10, 5, 0.82), transparent);
+}
+
+.section::after {
+  bottom: 0;
+  height: 160px;
+  background: linear-gradient(to top, rgba(15, 10, 5, 0.88), transparent);
+}
+
 /* ---- Animacja wejścia ---- */
 .fadeIn {
   opacity: 0;
@@ -29,7 +52,7 @@
 /* ---- Układ wewnętrzny ---- */
 .inner {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: space-between;
