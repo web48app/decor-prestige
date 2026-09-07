@@ -1,6 +1,6 @@
 /* ============================================================
-   PRODUCTS — visual catalogue
-   Header w Container, grid full-width edge-to-edge
+   PRODUCTS — editorial / luxury interior layout
+   2 duże zdjęcia (55/45) + asymetria + rząd drugorzędnych
    ============================================================ */
 
 .section {
@@ -11,10 +11,11 @@
 /* ---- Fade-in ---- */
 .fadeIn {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.75s ease, transform 0.75s ease;
+  transform: translateY(24px);
+  transition: opacity 0.85s ease, transform 0.85s ease;
 }
-.visible {
+
+.fadeIn.visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -25,17 +26,18 @@
 
 .header {
   display: flex;
-  align-items: flex-start;
+  align-items: flex-end;
   justify-content: space-between;
   gap: var(--space-8);
-  margin-bottom: var(--space-10);
+  padding-top: clamp(4rem, 8vw, 7rem);
+  padding-bottom: clamp(var(--space-10), 5vw, var(--space-14));
 }
 
 .headerLeft { flex: 1; }
 
 .headerRight {
   flex-shrink: 0;
-  padding-top: var(--space-2);
+  padding-bottom: var(--space-2);
 }
 
 .eyebrow {
@@ -79,29 +81,35 @@
 }
 
 /* ============================================================
-   PRODUCT GRID — full width, zero gap, edge-to-edge
+   GŁÓWNY EDITORIAL GRID — 55 / 45
    ============================================================ */
 
-.grid {
+.mainGrid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 0;
+  grid-template-columns: 55fr 45fr;
+  gap: clamp(var(--space-4), 2.5vw, var(--space-8));
+  align-items: start;
+  margin-bottom: clamp(var(--space-10), 5vw, var(--space-16));
 }
 
-/* ============================================================
-   SINGLE PRODUCT
-   ============================================================ */
-
-.item {
+/* ---- Karta główna ---- */
+.featuredCard {
   display: flex;
   flex-direction: column;
+  gap: var(--space-5);
 }
 
-/* ---- Image wrap ---- */
+/* Prawa karta przesunieta w dół — subtelna asymetria */
+.cardOffset {
+  margin-top: clamp(var(--space-10), 6vw, var(--space-20));
+  transition-delay: 0.15s;
+}
+
+/* ---- Zdjęcie ---- */
 .imageWrap {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 3 / 4;
   overflow: hidden;
   background: var(--color-bg-secondary);
 }
@@ -114,80 +122,154 @@
   object-fit: cover;
   object-position: center;
   display: block;
-  transition: transform 0.5s ease;
+  transition: transform 0.7s ease;
 }
 
-.item:hover .image {
-  transform: scale(1.04);
-}
-
-.overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(44, 35, 25, 0);
-  transition: background 0.4s ease;
-  pointer-events: none;
-}
-
-.item:hover .overlay {
-  background: rgba(44, 35, 25, 0.1);
+.featuredCard:hover .image {
+  transform: scale(1.02);
 }
 
 .imageFallback {
   position: absolute;
   inset: 0;
-  background: linear-gradient(160deg, var(--color-bg-secondary) 0%, var(--color-bg-tertiary) 100%);
+  background: linear-gradient(
+    160deg,
+    var(--color-bg-secondary) 0%,
+    var(--color-bg-tertiary) 100%
+  );
   z-index: -1;
 }
 
-/* ---- Product name ---- */
+/* ---- Podpis ---- */
+.caption {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: 0 var(--space-1);
+}
+
+.num {
+  font-family: var(--font-body);
+  font-size: var(--font-size-xs);
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  color: var(--color-accent);
+}
+
 .name {
   font-family: var(--font-heading);
-  font-size: var(--font-size-lg);
-  font-weight: 400;
+  font-size: clamp(1.5rem, 2.2vw, 2.2rem);
+  font-weight: 300;
   color: var(--color-text);
   letter-spacing: -0.01em;
-  line-height: 1.2;
-  text-align: center;
-  padding: var(--space-5) var(--space-4);
-  background: var(--color-bg);
+  line-height: 1.1;
+}
+
+.desc {
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin-top: var(--space-1);
 }
 
 /* ============================================================
-   RESPONSIVE
+   DRUGORZĘDNE PRODUKTY — minimalistyczny rząd z separatorami
    ============================================================ */
 
-@media (max-width: 960px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
+.secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0;
+  padding: var(--space-6) 0 clamp(4rem, 8vw, 7rem);
+  border-top: 1px solid rgba(26, 18, 10, 0.07);
+}
+
+.secondaryGroup {
+  display: inline-flex;
+  align-items: center;
+}
+
+.secondaryItem {
+  font-family: var(--font-heading);
+  font-size: clamp(1.05rem, 1.6vw, 1.4rem);
+  font-weight: 300;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: color var(--transition-fast);
+  padding: var(--space-2) var(--space-3);
+}
+
+.secondaryItem:hover {
+  color: var(--color-text);
+}
+
+.secondaryDot {
+  color: var(--color-accent);
+  opacity: 0.4;
+  font-size: 1.1rem;
+  line-height: 1;
+  padding: 0 var(--space-1);
+  user-select: none;
+}
+
+/* ============================================================
+   RESPONSIVE — TABLET (760px)
+   ============================================================ */
+
+@media (max-width: 760px) {
+  .mainGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-5);
+  }
+
+  /* Na tablecie mniejszy offset */
+  .cardOffset {
+    margin-top: clamp(var(--space-6), 4vw, var(--space-10));
+  }
+
+  .imageWrap {
+    aspect-ratio: 2 / 3;
   }
 }
 
-@media (max-width: 600px) {
+/* ============================================================
+   RESPONSIVE — MOBILE (560px)
+   ============================================================ */
+
+@media (max-width: 560px) {
   .header {
     flex-direction: column;
+    align-items: flex-start;
     gap: var(--space-4);
-    margin-bottom: var(--space-8);
-  }
-
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .item:nth-child(5) {
-    grid-column: 1 / -1;
-  }
-
-  .item:nth-child(5) .imageWrap {
-    aspect-ratio: 16 / 7;
+    padding-bottom: var(--space-10);
   }
 
   .heading {
     font-size: clamp(1.8rem, 6.5vw, 2.4rem);
   }
 
-  .name {
-    font-size: var(--font-size-base);
-    padding: var(--space-3) var(--space-2);
+  .mainGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+  }
+
+  /* Na mobile brak offsetu — układ pionowy */
+  .cardOffset {
+    margin-top: 0;
+    transition-delay: 0.1s;
+  }
+
+  .imageWrap {
+    aspect-ratio: 4 / 3;
+  }
+
+  .secondary {
+    gap: var(--space-2);
+    flex-direction: row;
+    justify-content: center;
   }
 }

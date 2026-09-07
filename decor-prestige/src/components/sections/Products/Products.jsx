@@ -3,30 +3,33 @@ import Container from '../../ui/Container/Container';
 import { products } from '../../../data/products';
 import styles from './Products.module.css';
 
-function ProductItem({ product, index }) {
+/* ---- Opisy głównych produktów ---- */
+const featuredMeta = {
+  zaslony: { num: '01', desc: 'Oprawa okna, która nadaje wnętrzu charakter.' },
+  tkaniny: { num: '02', desc: 'Starannie dobrane materiały i faktury.' },
+};
+
+/* ---- Duże zdjęcie edytorialne ---- */
+function FeaturedCard({ product, offset }) {
   const ref = useRef(null);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add(styles.visible);
-          observer.disconnect();
-        }
-      },
+    const io = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { el.classList.add(styles.visible); io.disconnect(); } },
       { threshold: 0.1 }
     );
-    observer.observe(el);
-    return () => observer.disconnect();
+    io.observe(el);
+    return () => io.disconnect();
   }, []);
+
+  const meta = featuredMeta[product.id] || { num: '0?', desc: '' };
 
   return (
     <article
-      className={`${styles.item} ${styles.fadeIn}`}
+      className={`${styles.featuredCard} ${styles.fadeIn} ${offset ? styles.cardOffset : ''}`}
       ref={ref}
-      style={{ transitionDelay: `${index * 0.08}s` }}
     >
       <div className={styles.imageWrap}>
         <img
@@ -37,42 +40,50 @@ function ProductItem({ product, index }) {
           onError={(e) => { e.currentTarget.style.display = 'none'; }}
         />
         <div className={styles.imageFallback} aria-hidden="true" />
-        <div className={styles.overlay} aria-hidden="true" />
       </div>
-      <p className={styles.name}>{product.title}</p>
+      <div className={styles.caption}>
+        <span className={styles.num}>{meta.num}</span>
+        <h3 className={styles.name}>{product.title}</h3>
+        <p className={styles.desc}>{meta.desc}</p>
+      </div>
     </article>
   );
 }
 
+/* ============================================================
+   PRODUCTS — editorial layout
+   ============================================================ */
 export default function Products() {
-  const headingRef = useRef(null);
+  const headerRef    = useRef(null);
+  const secondaryRef = useRef(null);
 
   useEffect(() => {
-    const el = headingRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add(styles.visible);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.2 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
+    const els = [headerRef.current, secondaryRef.current].filter(Boolean);
+    const observers = els.map(el => {
+      const io = new IntersectionObserver(
+        ([e]) => { if (e.isIntersecting) { el.classList.add(styles.visible); io.disconnect(); } },
+        { threshold: 0.15 }
+      );
+      io.observe(el);
+      return io;
+    });
+    return () => observers.forEach(io => io.disconnect());
   }, []);
+
+  const featured  = products.filter(p => ['zaslony', 'tkaniny'].includes(p.id));
+  const secondary = products.filter(p => ['plisy', 'rolety', 'karnisze'].includes(p.id));
 
   return (
     <section id="produkty" className={styles.section} aria-labelledby="products-heading">
-
-      {/* Header wewnątrz Container */}
       <Container>
-        <div className={`${styles.header} ${styles.fadeIn}`} ref={headingRef}>
+
+        {/* ---- Nagłówek ---- */}
+        <div className={`${styles.header} ${styles.fadeIn}`} ref={headerRef}>
           <div className={styles.headerLeft}>
             <p className={styles.eyebrow}>Nasze Produkty</p>
             <h2 id="products-heading" className={styles.heading}>
-              Stylowe rozwiązania<br /><em className={styles.headingAccent}>dla Twojego wnętrza</em>
+              Stylowe rozwiązania<br />
+              <em className={styles.headingAccent}>dla Twojego wnętrza</em>
             </h2>
           </div>
           <div className={styles.headerRight}>
@@ -81,15 +92,27 @@ export default function Products() {
             </a>
           </div>
         </div>
+
+        {/* ---- Dwa główne zdjęcia — editorial ---- */}
+        <div className={styles.mainGrid}>
+          {featured.map((p, i) => (
+            <FeaturedCard key={p.id} product={p} offset={i === 1} />
+          ))}
+        </div>
+
+        {/* ---- Pozostałe produkty — minimalistyczny rząd ---- */}
+        <div className={`${styles.secondary} ${styles.fadeIn}`} ref={secondaryRef}>
+          {secondary.map((p, i) => (
+            <span key={p.id} className={styles.secondaryGroup}>
+              <a href="#kontakt" className={styles.secondaryItem}>{p.title}</a>
+              {i < secondary.length - 1 && (
+                <span className={styles.secondaryDot} aria-hidden="true">·</span>
+              )}
+            </span>
+          ))}
+        </div>
+
       </Container>
-
-      {/* Grid full-width — poza Container */}
-      <div className={styles.grid}>
-        {products.map((p, i) => (
-          <ProductItem key={p.id} product={p} index={i} />
-        ))}
-      </div>
-
     </section>
   );
 }
