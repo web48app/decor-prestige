@@ -216,12 +216,12 @@ a.contactValue:hover {
   border-radius: var(--radius-md);
   padding: var(--space-4) var(--space-8);
   white-space: nowrap;
-  transition: opacity var(--transition-normal);
+  transition: opacity var(--transition-normal), transform var(--transition-normal);
 }
 
 .detailsBtn:hover {
   opacity: 0.82;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
 /* ---- Środek: DUŻE zdjęcie pracowni ---- */
