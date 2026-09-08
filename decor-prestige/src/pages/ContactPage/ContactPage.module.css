@@ -22,7 +22,7 @@
 .hero {
   position: relative;
   overflow: hidden;
-  min-height: clamp(500px, 58vw, 700px);
+  min-height: clamp(420px, 48vw, 600px);
   display: flex;
   align-items: center;
   padding-top: 80px; /* offset fixed navbar */
