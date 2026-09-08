@@ -27,6 +27,6 @@ export const site = {
     { label: 'Oferta',       href: '#oferta' },
     { label: 'Dlaczego my',  href: '#o-firmie' },
     { label: 'Realizacje',   href: '#realizacje' },
-    { label: 'Kontakt',      href: '#kontakt' },
+    { label: 'Kontakt',      href: '/kontakt' },
   ],
 };

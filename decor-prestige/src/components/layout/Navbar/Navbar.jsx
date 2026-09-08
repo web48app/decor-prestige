@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { site } from '../../../data/site';
 import Container from '../../ui/Container/Container';
 import styles from './Navbar.module.css';
 
 export default function Navbar() {
+  const navigate = useNavigate();
   const [scrolled, setScrolled]   = useState(false);
   const [menuOpen, setMenuOpen]   = useState(false);
   const [active,   setActive]     = useState('');
@@ -21,11 +23,15 @@ export default function Navbar() {
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
-  const scrollTo = (href) => {
+  const handleNav = (href) => {
     setMenuOpen(false);
-    const id = href.replace('#', '');
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (href.startsWith('/')) {
+      navigate(href);
+    } else {
+      const id = href.replace('#', '');
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
     setActive(href);
   };
 
@@ -41,7 +47,7 @@ export default function Navbar() {
           <a
             href="#start"
             className={styles.logo}
-            onClick={(e) => { e.preventDefault(); scrollTo('#start'); }}
+            onClick={(e) => { e.preventDefault(); handleNav('#start'); }}
             aria-label="DECOR-PRESTIGE – strona główna"
           >
             <span className={styles.logoName}>DECOR-PRESTIGE</span>
@@ -55,7 +61,7 @@ export default function Navbar() {
                 <a
                   href={item.href}
                   className={`${styles.link} ${active === item.href ? styles.linkActive : ''}`}
-                  onClick={(e) => { e.preventDefault(); scrollTo(item.href); }}
+                  onClick={(e) => { e.preventDefault(); handleNav(item.href); }}
                 >
                   {item.label}
                 </a>
@@ -67,7 +73,7 @@ export default function Navbar() {
           <a
             href="#kontakt"
             className={styles.cta}
-            onClick={(e) => { e.preventDefault(); scrollTo('#kontakt'); }}
+            onClick={(e) => { e.preventDefault(); handleNav('#kontakt'); }}
           >
             Umów bezpłatny pomiar&nbsp;→
           </a>
@@ -99,7 +105,7 @@ export default function Navbar() {
               <a
                 href={item.href}
                 className={styles.mobileLink}
-                onClick={(e) => { e.preventDefault(); scrollTo(item.href); }}
+                onClick={(e) => { e.preventDefault(); handleNav(item.href); }}
                 tabIndex={menuOpen ? 0 : -1}
               >
                 {item.label}
@@ -110,7 +116,7 @@ export default function Navbar() {
             <a
               href="#kontakt"
               className={styles.mobileCTA}
-              onClick={(e) => { e.preventDefault(); scrollTo('#kontakt'); }}
+              onClick={(e) => { e.preventDefault(); handleNav('#kontakt'); }}
               tabIndex={menuOpen ? 0 : -1}
             >
               Umów bezpłatny pomiar →
