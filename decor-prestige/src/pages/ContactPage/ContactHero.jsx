@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react';
-import Container from '../../components/ui/Container/Container';
 import styles from './ContactPage.module.css';
 
 export default function ContactHero() {
@@ -18,31 +17,29 @@ export default function ContactHero() {
 
   return (
     <section className={styles.hero} aria-label="Hero kontakt">
-      <div className={styles.heroInner}>
-        {/* Lewa — tekst */}
-        <div className={`${styles.heroText} ${styles.fadeIn}`} ref={ref}>
-          <p className={styles.heroEyebrow}>Kontakt</p>
-          <h1 className={styles.heroHeading}>
-            Porozmawiajmy<br />
-            <em className={styles.heroAccent}>o Twoim wnętrzu.</em>
-          </h1>
-          <p className={styles.heroLead}>
-            Z przyjemnością doradzimy, pomożemy dobrać rozwiązania
-            i umówimy się na bezpłatny pomiar u Ciebie.
-          </p>
-        </div>
+      {/* Pełne zdjęcie jako tło */}
+      <img
+        src="/hero_kontakt.png"
+        alt=""
+        className={styles.heroBg}
+        loading="eager"
+        aria-hidden="true"
+        onError={(e) => { e.currentTarget.style.display = 'none'; }}
+      />
+      {/* Kremowy gradient — wygaszenie po lewej dla czytelności tekstu */}
+      <div className={styles.heroBgOverlay} aria-hidden="true" />
 
-        {/* Prawa — zdjęcie */}
-        <div className={styles.heroImageWrap}>
-          <img
-            src="/hero_kontakt.png"
-            alt="Eleganckie dekoracje okienne DECOR-PRESTIGE"
-            className={styles.heroImage}
-            loading="eager"
-            onError={(e) => { e.currentTarget.style.display = 'none'; }}
-          />
-          <div className={styles.heroImageOverlay} aria-hidden="true" />
-        </div>
+      {/* Tekst na tle zdjęcia */}
+      <div className={`${styles.heroText} ${styles.fadeIn}`} ref={ref}>
+        <p className={styles.heroEyebrow}>Kontakt</p>
+        <h1 className={styles.heroHeading}>
+          Porozmawiajmy<br />
+          <em className={styles.heroAccent}>o Twoim wnętrzu.</em>
+        </h1>
+        <p className={styles.heroLead}>
+          Z przyjemnością doradzimy, pomożemy dobrać rozwiązania
+          i umówimy się na bezpłatny pomiar u Ciebie.
+        </p>
       </div>
     </section>
   );
