@@ -35,7 +35,7 @@ export default function ContactHero() {
         {/* Prawa — zdjęcie */}
         <div className={styles.heroImageWrap}>
           <img
-            src="/hero.png"
+            src="/hero_kontakt.png"
             alt="Eleganckie dekoracje okienne DECOR-PRESTIGE"
             className={styles.heroImage}
             loading="eager"

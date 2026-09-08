@@ -1,12 +1,11 @@
 import { useEffect, useRef } from 'react';
-import { CheckCircle } from 'lucide-react';
-import { site } from '../../data/site';
+import { Gem, Heart, Home } from 'lucide-react';
 import styles from './ContactPage.module.css';
 
-const points = [
-  'Profesjonalne doradztwo',
-  'Indywidualne podejście',
-  'Realne wzory i próbki tkanin na miejscu',
+const features = [
+  { Icon: Gem,  label: 'Profesjonalne doradztwo' },
+  { Icon: Heart, label: 'Indywidualne podejście' },
+  { Icon: Home,  label: 'Realne wzory i próbki tkanin na miejscu' },
 ];
 
 export default function ContactCTA() {
@@ -25,45 +24,39 @@ export default function ContactCTA() {
 
   return (
     <section className={styles.ctaSection} aria-label="Pomoc i doradztwo">
-      {/* Tło-zdjęcie */}
-      <div className={styles.ctaBg} aria-hidden="true">
+
+      {/* Lewa: zdjęcie */}
+      <div className={styles.ctaImageWrap} aria-hidden="true">
         <img
-          src="/hero.png"
+          src="/footer_kontakt.png"
           alt=""
           className={styles.ctaBgImage}
           loading="lazy"
           onError={(e) => { e.currentTarget.style.display = 'none'; }}
         />
-        <div className={styles.ctaBgOverlay} />
       </div>
 
-      {/* Treść */}
-      <div className={`${styles.ctaContent} ${styles.fadeIn}`} ref={ref}>
-        <p className={styles.eyebrowLight}>Masz pytania?</p>
+      {/* Prawa: treść */}
+      <div className={`${styles.ctaRight} ${styles.fadeIn}`} ref={ref}>
+        <p className={styles.eyebrow}>Masz pytania?</p>
         <h2 className={styles.ctaHeading}>Chętnie pomożemy.</h2>
         <p className={styles.ctaLead}>
-          Nie wiesz, jakie rozwiązanie będzie najlepsze?
+          Nie wiesz, jakie rozwiązanie będzie najlepsze?<br />
           Napisz, zadzwoń lub odwiedź naszą pracownię.
         </p>
 
-        <ul className={styles.ctaPoints}>
-          {points.map((p) => (
-            <li key={p} className={styles.ctaPoint}>
-              <CheckCircle size={16} strokeWidth={1.5} className={styles.ctaPointIcon} />
-              <span>{p}</span>
+        <ul className={styles.ctaFeatures}>
+          {features.map(({ Icon, label }) => (
+            <li key={label} className={styles.ctaFeatureItem}>
+              <span className={styles.ctaFeatureIcon}>
+                <Icon size={22} strokeWidth={1.3} />
+              </span>
+              <span>{label}</span>
             </li>
           ))}
         </ul>
-
-        <div className={styles.ctaActions}>
-          <a href={site.contact.phoneHref} className={styles.ctaBtn}>
-            Zadzwoń: {site.contact.phone}
-          </a>
-          <a href={site.contact.emailHref} className={styles.ctaBtnSecondary}>
-            Napisz do nas
-          </a>
-        </div>
       </div>
+
     </section>
   );
 }

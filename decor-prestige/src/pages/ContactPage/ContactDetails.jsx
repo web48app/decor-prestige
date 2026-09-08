@@ -3,6 +3,10 @@ import { Phone, Mail, MapPin } from 'lucide-react';
 import { site } from '../../data/site';
 import styles from './ContactPage.module.css';
 
+const mapsUrl = `https://maps.google.com/?q=${encodeURIComponent(
+  site.contact.address.street + ', ' + site.contact.address.city
+)}`;
+
 export default function ContactDetails() {
   const ref = useRef(null);
 
@@ -48,6 +52,7 @@ export default function ContactDetails() {
                 <a href={site.contact.emailHref} className={styles.contactValue}>
                   {site.contact.email}
                 </a>
+                <span className={styles.contactSub}>Odpowiadamy najszybciej jak to możliwe.</span>
               </div>
             </div>
 
@@ -69,12 +74,12 @@ export default function ContactDetails() {
           </a>
         </div>
 
-        {/* ---- ŚRODEK: zdjęcie pracowni ---- */}
+        {/* ---- ŚRODEK: zdjęcie sklepu ---- */}
         <div className={styles.detailsMiddle}>
           <div className={styles.workshopWrap}>
             <img
-              src="/hero.png"
-              alt="Pracownia DECOR-PRESTIGE — Tarnów"
+              src="/deckor_prestige.png"
+              alt="Salon DECOR-PRESTIGE — Tarnów"
               className={styles.workshopImage}
               loading="lazy"
               onError={(e) => { e.currentTarget.style.display = 'none'; }}
@@ -96,6 +101,21 @@ export default function ContactDetails() {
           </p>
 
           <div className={styles.mapWrap}>
+            {/* Karta adresowa nad mapą */}
+            <div className={styles.mapCard}>
+              <strong className={styles.mapCardName}>Decor-Prestige</strong>
+              <span className={styles.mapCardAddress}>{site.contact.address.street}</span>
+              <span className={styles.mapCardAddress}>{site.contact.address.city}</span>
+              <a
+                href={mapsUrl}
+                className={styles.mapCardLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Zobacz w Google Maps →
+              </a>
+            </div>
+
             <iframe
               title="DECOR-PRESTIGE — Tarnów"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2561.6!2d21.0072!3d50.0120!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473d8773b2ecae97%3A0x1!2sul.%20Brama%20Pi%C5%BAne%C5%84ska%205%2C%2033-100%20Tarn%C3%B3w!5e0!3m2!1spl!2spl!4v1"
@@ -107,17 +127,6 @@ export default function ContactDetails() {
               referrerPolicy="no-referrer-when-downgrade"
             />
           </div>
-
-          <a
-            href={`https://maps.google.com/?q=${encodeURIComponent(
-              site.contact.address.street + ', ' + site.contact.address.city
-            )}`}
-            className={styles.mapsLink}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Zobacz w Google Maps →
-          </a>
         </div>
 
       </div>
