@@ -216,11 +216,11 @@ a.contactValue:hover {
   padding: var(--space-4) var(--space-8);
   white-space: nowrap;
   transition: opacity var(--transition-normal);
-  margin-top: var(--space-2);
 }
 
 .detailsBtn:hover {
-  opacity: 0.88;
+  opacity: 0.82;
+  transform: translateY(-1px);
 }
 
 /* ---- Środek: DUŻE zdjęcie pracowni ---- */
