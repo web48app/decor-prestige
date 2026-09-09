@@ -104,7 +104,7 @@
 
 .detailsGrid {
   display: grid;
-  grid-template-columns: 1fr 1.7fr 1fr;
+  grid-template-columns: 1fr 1.5fr 1.35fr;
   gap: clamp(var(--space-6), 2.5vw, var(--space-10));
   max-width: 1440px;
   margin: 0 auto;
