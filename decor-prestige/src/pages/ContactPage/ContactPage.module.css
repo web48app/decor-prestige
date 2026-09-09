@@ -338,7 +338,9 @@ a.contactValue:hover {
 .ctaSection {
   display: grid;
   grid-template-columns: 0.85fr 1.15fr;
+  align-items: stretch; /* obie kolumny do wysokości wyznaczonej przez ctaRight */
   background: var(--color-bg-secondary);
+  /* ZERO padding/min-height na sekcji — wysokość = wysokość gridu = wysokość ctaRight */
 }
 
 
@@ -346,7 +348,7 @@ a.contactValue:hover {
 .ctaImageWrap {
   position: relative;
   overflow: hidden;
-  min-height: clamp(380px, 44vw, 560px);
+  /* brak min-height — wysokość sekcji wyznacza wyłącznie ctaRight */
 }
 
 .ctaBgImage {
@@ -380,7 +382,8 @@ a.contactValue:hover {
   flex-direction: row;
   align-items: center;
   gap: clamp(2rem, 3vw, 4rem);
-  padding: clamp(2.5rem, 5vw, 4rem) clamp(2rem, 4vw, 4rem) clamp(2.5rem, 5vw, 4rem) clamp(1rem, 2vw, 2rem);
+  /* padding-top < padding-bottom → treść optycznie wyżej; padding określa wysokość sekcji */
+  padding: clamp(3.5rem, 6vw, 5.5rem) clamp(2rem, 4vw, 4rem) clamp(4.5rem, 7vw, 6.5rem) clamp(1rem, 2vw, 2rem);
 }
 
 .ctaTextBlock {
