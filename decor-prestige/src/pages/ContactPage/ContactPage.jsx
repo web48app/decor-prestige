@@ -2,6 +2,7 @@ import ContactNavbar from './ContactNavbar';
 import ContactHero from './ContactHero';
 import ContactDetails from './ContactDetails';
 import ContactCTA from './ContactCTA';
+import ContactForm from './ContactForm';
 import Footer from '../../components/layout/Footer/Footer';
 
 export default function ContactPage() {
@@ -12,6 +13,7 @@ export default function ContactPage() {
         <ContactHero />
         <ContactDetails />
         <ContactCTA />
+        <ContactForm />
       </main>
       <Footer />
     </>
