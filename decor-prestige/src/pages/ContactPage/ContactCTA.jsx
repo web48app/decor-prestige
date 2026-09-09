@@ -25,7 +25,7 @@ export default function ContactCTA() {
   return (
     <section className={styles.ctaSection} aria-label="Pomoc i doradztwo">
 
-      {/* Lewa: zdjęcie */}
+      {/* Lewa: zdjęcie z gradientem fade w krem */}
       <div className={styles.ctaImageWrap} aria-hidden="true">
         <img
           src="/footer_kontakt.png"
@@ -36,15 +36,23 @@ export default function ContactCTA() {
         />
       </div>
 
-      {/* Prawa: treść */}
+      {/* Prawa: tekst | linia | ikony */}
       <div className={`${styles.ctaRight} ${styles.fadeIn}`} ref={ref}>
-        <p className={styles.eyebrow}>Masz pytania?</p>
-        <h2 className={styles.ctaHeading}>Chętnie pomożemy.</h2>
-        <p className={styles.ctaLead}>
-          Nie wiesz, jakie rozwiązanie będzie najlepsze?<br />
-          Napisz, zadzwoń lub odwiedź naszą pracownię.
-        </p>
 
+        {/* Blok tekstowy */}
+        <div className={styles.ctaTextBlock}>
+          <p className={styles.eyebrow}>Masz pytania?</p>
+          <h2 className={styles.ctaHeading}>Chętnie pomożemy.</h2>
+          <p className={styles.ctaLead}>
+            Nie wiesz, jakie rozwiązanie będzie najlepsze?<br />
+            Napisz, zadzwoń lub odwiedź naszą pracownię.
+          </p>
+        </div>
+
+        {/* Pionowa linia */}
+        <div className={styles.ctaDivider} aria-hidden="true" />
+
+        {/* Ikony */}
         <ul className={styles.ctaFeatures}>
           {features.map(({ Icon, label }) => (
             <li key={label} className={styles.ctaFeatureItem}>
@@ -55,6 +63,7 @@ export default function ContactCTA() {
             </li>
           ))}
         </ul>
+
       </div>
 
     </section>
