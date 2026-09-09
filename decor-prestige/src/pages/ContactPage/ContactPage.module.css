@@ -336,8 +336,7 @@ a.contactValue:hover {
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-height: clamp(420px, 46vw, 560px);
-  /* Subtelne kremowe przejście — brak ostrego podziału z sekcją wyżej */
-  position: relative;
+  background: var(--color-bg-secondary);
 }
 
 
