@@ -339,9 +339,8 @@ a.contactValue:hover {
   display: grid;
   grid-template-columns: 0.85fr 1.15fr;
   align-items: stretch;
-  height: clamp(400px, 46vw, 560px); /* stała wysokość sekcji — grid wypełnia dokładnie tyle */
   overflow: hidden;
-  background: var(--color-bg-secondary);
+  /* brak background — każda kolumna ma własne tło */
 }
 
 
@@ -349,8 +348,7 @@ a.contactValue:hover {
 .ctaImageWrap {
   position: relative;
   overflow: hidden;
-  align-self: stretch;
-  height: 100%;
+  min-height: clamp(400px, 46vw, 560px);
 }
 
 .ctaBgImage {
