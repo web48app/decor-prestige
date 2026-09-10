@@ -99,7 +99,7 @@
 .detailsSection {
   background-color: var(--color-bg-secondary);
   padding-top: clamp(3.5rem, 5vw, 5.5rem);
-  padding-bottom: clamp(3.5rem, 5vw, 5.5rem);
+  padding-bottom: 0;
 }
 
 .detailsGrid {
@@ -349,7 +349,8 @@ a.contactValue:hover {
 .ctaImageWrap {
   position: relative;
   overflow: hidden;
-  /* brak min-height — wysokość sekcji wyznacza wyłącznie ctaRight */
+  align-self: stretch;
+  height: 100%;
 }
 
 .ctaBgImage {
