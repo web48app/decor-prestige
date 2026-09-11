@@ -54,10 +54,14 @@ export default function ContactCTA() {
 
         {/* Ikony */}
         <ul className={styles.ctaFeatures}>
-          {features.map(({ Icon, label }) => (
-            <li key={label} className={styles.ctaFeatureItem}>
+          {features.map(({ Icon, label }, i) => (
+            <li
+              key={label}
+              className={styles.ctaFeatureItem}
+              style={{ '--item-delay': `${0.1 + i * 0.12}s` }}
+            >
               <span className={styles.ctaFeatureIcon}>
-                <Icon size={34} strokeWidth={1.3} />
+                <Icon size={22} strokeWidth={1.4} />
               </span>
               <span>{label}</span>
             </li>

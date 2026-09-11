@@ -426,7 +426,6 @@ a.contactValue:hover {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--space-7);
   flex-shrink: 0;
 }
 
@@ -438,11 +437,42 @@ a.contactValue:hover {
   font-size: clamp(0.9rem, 1.1vw, 1.05rem);
   font-weight: 600;
   color: var(--color-text);
+  padding: var(--space-5) 0;
+
+  opacity: 0;
+  transform: translateX(14px);
+  transition:
+    opacity 0.55s ease var(--item-delay, 0s),
+    transform 0.55s ease var(--item-delay, 0s);
+}
+
+.ctaFeatureItem + .ctaFeatureItem {
+  border-top: 1px solid rgba(201, 169, 110, 0.18);
+}
+
+/* animacja po tym jak rodzic dostanie .visible */
+.ctaRight.visible .ctaFeatureItem {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .ctaFeatureIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(201, 169, 110, 0.35);
   color: var(--color-accent);
   flex-shrink: 0;
+  transition: border-color var(--transition-normal), color var(--transition-normal);
+}
+
+.ctaFeatureItem:hover .ctaFeatureIcon {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  border-width: 1.5px;
 }
 
 /* ============================================================
