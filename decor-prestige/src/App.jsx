@@ -19,6 +19,9 @@ import Contact  from './components/sections/Contact/Contact';
 /* ---- Strona kontaktu ---- */
 import ContactPage from './pages/ContactPage/ContactPage';
 
+/* ---- UI globalne ---- */
+import ScrollToTop from './components/ui/ScrollToTop/ScrollToTop';
+
 function HomePage() {
   return (
     <>
@@ -43,9 +46,12 @@ function HomePage() {
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/"        element={<HomePage />} />
-      <Route path="/kontakt" element={<ContactPage />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/"        element={<HomePage />} />
+        <Route path="/kontakt" element={<ContactPage />} />
+      </Routes>
+      <ScrollToTop />
+    </>
   );
 }
