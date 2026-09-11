@@ -398,7 +398,8 @@ a.contactValue:hover {
 
 .ctaDivider {
   width: 1px;
-  align-self: stretch;
+  height: 160px;
+  align-self: center;
   background: rgba(201, 169, 110, 0.35);
   flex-shrink: 0;
 }
