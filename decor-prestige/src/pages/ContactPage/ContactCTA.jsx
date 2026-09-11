@@ -57,7 +57,7 @@ export default function ContactCTA() {
           {features.map(({ Icon, label }) => (
             <li key={label} className={styles.ctaFeatureItem}>
               <span className={styles.ctaFeatureIcon}>
-                <Icon size={22} strokeWidth={1.3} />
+                <Icon size={34} strokeWidth={1.3} />
               </span>
               <span>{label}</span>
             </li>
