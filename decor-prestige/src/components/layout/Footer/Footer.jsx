@@ -1,4 +1,5 @@
 import { MapPin, Phone, Mail } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { site } from '../../../data/site';
 import styles from './Footer.module.css';
 
@@ -23,19 +24,19 @@ function IconInstagram() {
 
 /* ---- Dane nawigacji ---- */
 const footerNav = [
-  { label: 'Strona główna', href: '#home' },
-  { label: 'Oferta',        href: '#oferta' },
-  { label: 'Dlaczego my?',  href: '#dlaczego-my' },
-  { label: 'Realizacje',    href: '#realizacje' },
-  { label: 'Kontakt',       href: '#kontakt' },
+  { label: 'Strona główna', href: '/#home' },
+  { label: 'Oferta',        href: '/#oferta' },
+  { label: 'Dlaczego my?',  href: '/#dlaczego-my' },
+  { label: 'Realizacje',    href: '/#realizacje' },
+  { label: 'Kontakt',       href: '/kontakt' },
 ];
 
 const footerProducts = [
-  { label: 'Zasłony',  href: '#oferta' },
-  { label: 'Tkaniny',  href: '#oferta' },
-  { label: 'Plisy',    href: '#oferta' },
-  { label: 'Rolety',   href: '#oferta' },
-  { label: 'Karnisze', href: '#oferta' },
+  { label: 'Zasłony',  href: '/#oferta' },
+  { label: 'Tkaniny',  href: '/#oferta' },
+  { label: 'Plisy',    href: '/#oferta' },
+  { label: 'Rolety',   href: '/#oferta' },
+  { label: 'Karnisze', href: '/#oferta' },
 ];
 
 export default function Footer() {
