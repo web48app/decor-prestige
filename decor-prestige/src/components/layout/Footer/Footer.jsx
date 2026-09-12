@@ -1,5 +1,5 @@
 import { MapPin, Phone, Mail } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { site } from '../../../data/site';
 import styles from './Footer.module.css';
 
@@ -41,6 +41,29 @@ const footerProducts = [
 
 export default function Footer() {
   const year = new Date().getFullYear();
+  const navigate = useNavigate();
+
+  const handleNav = (e, href) => {
+    e.preventDefault();
+    if (!href.startsWith('/#')) {
+      // zwykła strona np. /kontakt
+      navigate(href);
+      return;
+    }
+    const hash = href.replace('/#', '');
+    if (window.location.pathname === '/') {
+      // jesteśmy na stronie głównej — scrolluj
+      const el = document.getElementById(hash);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      // inna strona — przenieś na główną z hashem
+      navigate('/');
+      setTimeout(() => {
+        const el = document.getElementById(hash);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 300);
+    }
+  };
 
   return (
     <footer className={styles.footer} role="contentinfo">
@@ -75,7 +98,7 @@ export default function Footer() {
             <ul className={styles.linkList}>
               {footerNav.map(item => (
                 <li key={item.label}>
-                  <a href={item.href} className={styles.link}>{item.label}</a>
+                  <a href={item.href} className={styles.link} onClick={e => handleNav(e, item.href)}>{item.label}</a>
                 </li>
               ))}
             </ul>
@@ -87,7 +110,7 @@ export default function Footer() {
             <ul className={styles.linkList}>
               {footerProducts.map(item => (
                 <li key={item.label}>
-                  <a href={item.href} className={styles.link}>{item.label}</a>
+                  <a href={item.href} className={styles.link} onClick={e => handleNav(e, item.href)}>{item.label}</a>
                 </li>
               ))}
             </ul>
