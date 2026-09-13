@@ -24,9 +24,10 @@ export const site = {
   },
 
   nav: [
-    { label: 'Oferta',     href: '#oferta' },
-    { label: 'Produkty',   href: '/produkty' },
-    { label: 'Realizacje', href: '/realizacje' },
-    { label: 'Kontakt',    href: '/kontakt' },
+    { label: 'Usługi',      href: '#oferta' },
+    { label: 'Produkty',    href: '#produkty' },
+    { label: 'Dlaczego my', href: '#dlaczego-my' },
+    { label: 'Realizacje',  href: '/realizacje' },
+    { label: 'Kontakt',     href: '/kontakt' },
   ],
 };

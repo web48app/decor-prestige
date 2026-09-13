@@ -25,8 +25,9 @@ function IconInstagram() {
 /* ---- Dane nawigacji ---- */
 const footerNav = [
   { label: 'Strona główna', href: '/#home' },
-  { label: 'Oferta',        href: '/#oferta' },
-  { label: 'Produkty',      href: '/produkty' },
+  { label: 'Usługi',        href: '/#oferta' },
+  { label: 'Produkty',      href: '/#produkty' },
+  { label: 'Dlaczego my',   href: '/#dlaczego-my' },
   { label: 'Realizacje',    href: '/realizacje' },
   { label: 'Kontakt',       href: '/kontakt' },
 ];

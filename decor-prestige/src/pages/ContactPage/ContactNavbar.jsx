@@ -4,10 +4,11 @@ import Container from '../../components/ui/Container/Container';
 import styles from '../../components/layout/Navbar/Navbar.module.css';
 
 const navItems = [
-  { label: 'Oferta',       href: '/#oferta' },
-  { label: 'Dlaczego my',  href: '/#o-firmie' },
-  { label: 'Realizacje',   href: '/#realizacje' },
-  { label: 'Kontakt',      href: '/kontakt', active: true },
+  { label: 'Usługi',      href: '/#oferta' },
+  { label: 'Produkty',    href: '/#produkty' },
+  { label: 'Dlaczego my', href: '/#dlaczego-my' },
+  { label: 'Realizacje',  href: '/realizacje' },
+  { label: 'Kontakt',     href: '/kontakt', active: true },
 ];
 
 export default function ContactNavbar() {

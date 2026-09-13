@@ -85,11 +85,6 @@ export default function Products() {
               <em className={styles.headingAccent}>dla Twojego wnętrza</em>
             </h2>
           </div>
-          <div className={styles.headerRight}>
-            <a href="#kontakt" className={styles.viewAll}>
-              Zobacz pełną ofertę →
-            </a>
-          </div>
         </div>
 
         {/* ---- Górny rząd — 2 duże zdjęcia ---- */}
@@ -112,6 +107,13 @@ export default function Products() {
               captionFull={false}
             />
           ))}
+        </div>
+
+        {/* ---- Przycisk — przejście do pełnej strony produktów ---- */}
+        <div className={styles.viewAllWrap}>
+          <a href="/produkty" className={styles.viewAllBtn}>
+            Zobacz wszystkie produkty →
+          </a>
         </div>
 
       </Container>
