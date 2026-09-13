@@ -45,27 +45,24 @@ export default function Footer() {
   const navigate = useNavigate();
 
   const handleNav = (e, href) => {
-    e.preventDefault();
-    if (href.startsWith('/#')) {
-      const hash = href.replace('/#', '');
-      if (window.location.pathname === '/') {
-        // strona główna — płynny scroll do sekcji
-        if (!hash || hash === 'home' || hash === 'start') {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+      e.preventDefault();
+      if (href.startsWith('/#')) {
+        const hash = href.replace('/#', '');
+        if (window.location.pathname === '/') {
+          if (!hash || hash === 'home' || hash === 'start') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          } else {
+            const el = document.getElementById(hash);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
         } else {
-          const el = document.getElementById(hash);
-          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          window.location.href = href;
         }
       } else {
-        // inna strona — pełny reload przeglądarki, sam scrolluje do sekcji po załadowaniu
-        window.location.href = href;
+        navigate(href);
+        window.scrollTo({ top: 0, behavior: 'instant' });
       }
-    } else {
-      // zwykła ścieżka np. /kontakt — scroll do góry po nawigacji
-      navigate(href);
-      window.scrollTo({ top: 0, behavior: 'instant' });
-    }
-  };
+    };
 
   return (
     <footer className={styles.footer} role="contentinfo">
