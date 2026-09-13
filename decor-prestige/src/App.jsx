@@ -4,7 +4,12 @@ import './styles/globals.css';
 
 function RouteScrollTop() {
   const { pathname } = useLocation();
-  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  useEffect(() => {
+    // nie scrolluj do góry jeśli URL ma hash — HomePage sam obsłuży scroll do sekcji
+    if (!window.location.hash) {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname]);
   return null;
 }
 
@@ -36,6 +41,17 @@ import RealizacjePage from './pages/RealizacjePage/RealizacjePage';
 import ScrollToTop from './components/ui/ScrollToTop/ScrollToTop';
 
 function HomePage() {
+  useEffect(() => {
+    const hash = window.location.hash.slice(1);
+    if (hash) {
+      // małe opóźnienie żeby React zdążył wyrenderować sekcje
+      setTimeout(() => {
+        const el = document.getElementById(hash);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 120);
+    }
+  }, []);
+
   return (
     <>
       <Navbar />
