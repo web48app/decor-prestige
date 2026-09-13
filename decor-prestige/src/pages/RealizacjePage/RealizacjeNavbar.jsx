@@ -11,6 +11,13 @@ const navItems = [
   { label: 'Kontakt',     href: '/kontakt' },
 ];
 
+const handleNav = (e, href) => {
+  if (href.startsWith('/#')) {
+    e.preventDefault();
+    window.location.href = href;
+  }
+};
+
 export default function RealizacjeNavbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -41,6 +48,7 @@ export default function RealizacjeNavbar() {
                 <a
                   href={item.href}
                   className={`${styles.link} ${item.active ? styles.linkActive : ''}`}
+                  onClick={(e) => handleNav(e, item.href)}
                 >
                   {item.label}
                 </a>
@@ -81,7 +89,7 @@ export default function RealizacjeNavbar() {
                 href={item.href}
                 className={styles.mobileLink}
                 tabIndex={menuOpen ? 0 : -1}
-                onClick={() => setMenuOpen(false)}
+                onClick={(e) => { handleNav(e, item.href); setMenuOpen(false); }}
               >
                 {item.label}
               </a>

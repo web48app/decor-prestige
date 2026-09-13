@@ -11,6 +11,16 @@ const navItems = [
   { label: 'Kontakt',     href: '/kontakt', active: true },
 ];
 
+/* Dla linków /#hash — wymuszamy pełną nawigację przeglądarki
+   żeby browser sam scrollował do sekcji po załadowaniu home */
+const handleNav = (e, href) => {
+  if (href.startsWith('/#')) {
+    e.preventDefault();
+    window.location.href = href;
+  }
+  // zwykłe linki /kontakt, /realizacje — przepuszczamy normalnie
+};
+
 export default function ContactNavbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -48,6 +58,7 @@ export default function ContactNavbar() {
                 <a
                   href={item.href}
                   className={`${styles.link} ${item.active ? styles.linkActive : ''}`}
+                  onClick={(e) => handleNav(e, item.href)}
                 >
                   {item.label}
                 </a>
@@ -88,7 +99,7 @@ export default function ContactNavbar() {
                 href={item.href}
                 className={styles.mobileLink}
                 tabIndex={menuOpen ? 0 : -1}
-                onClick={() => setMenuOpen(false)}
+                onClick={(e) => { handleNav(e, item.href); setMenuOpen(false); }}
               >
                 {item.label}
               </a>
