@@ -45,22 +45,23 @@ export default function Footer() {
   const navigate = useNavigate();
 
   const handleNav = (e, href) => {
+    e.preventDefault();
     if (href.startsWith('/#')) {
+      const hash = href.replace('/#', '');
       if (window.location.pathname === '/') {
-        // strona główna — prevent default + płynny scroll do sekcji
-        e.preventDefault();
-        const hash = href.replace('/#', '');
-        if (!hash || hash === 'home') {
+        // strona główna — płynny scroll do sekcji
+        if (!hash || hash === 'home' || hash === 'start') {
           window.scrollTo({ top: 0, behavior: 'smooth' });
         } else {
           const el = document.getElementById(hash);
           if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
+      } else {
+        // inna strona — pełny reload przeglądarki, sam scrolluje do sekcji po załadowaniu
+        window.location.href = href;
       }
-      // inna strona — NIE preventDefault, browser sam nawiguje do /#hash i scrolluje
     } else {
       // zwykła ścieżka np. /kontakt — scroll do góry po nawigacji
-      e.preventDefault();
       navigate(href);
       window.scrollTo({ top: 0, behavior: 'instant' });
     }
