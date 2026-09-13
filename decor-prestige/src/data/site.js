@@ -24,9 +24,9 @@ export const site = {
   },
 
   nav: [
-    { label: 'Oferta',       href: '#oferta' },
-    { label: 'Dlaczego my',  href: '#o-firmie' },
-    { label: 'Realizacje',   href: '#realizacje' },
-    { label: 'Kontakt',      href: '/kontakt' },
+    { label: 'Oferta',     href: '#oferta' },
+    { label: 'Produkty',   href: '/produkty' },
+    { label: 'Realizacje', href: '/realizacje' },
+    { label: 'Kontakt',    href: '/kontakt' },
   ],
 };

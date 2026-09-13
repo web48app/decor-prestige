@@ -1,0 +1,341 @@
+/* ============================================================
+   PRODUCTS PAGE
+   ============================================================ */
+
+/* ---- Fade-in ---- */
+.fadeIn {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fadeIn.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+
+.hero {
+  background: var(--color-bg-secondary);
+  padding-top: 0;
+  padding-bottom: 0;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.heroInner {
+  padding-top: clamp(6rem, 12vw, 10rem);
+  padding-bottom: clamp(3rem, 5vw, 5rem);
+  max-width: 660px;
+}
+
+.heroEyebrow {
+  font-family: var(--font-body);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-taupe);
+  margin-bottom: var(--space-5);
+}
+
+.heroHeading {
+  font-family: var(--font-heading);
+  font-size: clamp(2.6rem, 5vw, 4.4rem);
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  margin-bottom: var(--space-6);
+  font-style: normal;
+}
+
+.heroAccent {
+  font-style: italic;
+  color: var(--color-accent);
+}
+
+.heroSub {
+  font-size: var(--font-size-base);
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  max-width: 480px;
+}
+
+/* ============================================================
+   LISTA PRODUKTÓW
+   ============================================================ */
+
+.productsSection {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.productsList {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Jeden wiersz produktu ---- */
+.productRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  min-height: clamp(380px, 44vw, 560px);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+/* Normalny: zdjęcie po lewej */
+.rowNormal {
+  grid-template-areas: "image content";
+}
+.rowNormal .productImageWrap { grid-area: image; }
+.rowNormal .productContent   { grid-area: content; }
+
+/* Odwrócony: zdjęcie po prawej */
+.rowReverse {
+  grid-template-areas: "content image";
+}
+.rowReverse .productImageWrap { grid-area: image; }
+.rowReverse .productContent   { grid-area: content; }
+
+/* ---- Zdjęcie ---- */
+.productImageWrap {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-bg-secondary);
+}
+
+.productImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.8s ease;
+}
+
+.productRow:hover .productImage {
+  transform: scale(1.03);
+}
+
+/* Numer dekoracyjny */
+.productNum {
+  position: absolute;
+  bottom: var(--space-5);
+  left: var(--space-5);
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 5vw, 5rem);
+  font-weight: 300;
+  color: rgba(255,255,255,0.18);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Odwrócony: numer po prawej */
+.rowReverse .productNum {
+  left: auto;
+  right: var(--space-5);
+}
+
+/* ---- Treść ---- */
+.productContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(2rem, 5vw, 4rem);
+  background: var(--color-bg);
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-taupe);
+  margin-bottom: var(--space-4);
+}
+
+.productTitle {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 2.8vw, 2.8rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+  margin-bottom: var(--space-5);
+}
+
+.productDesc {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  line-height: 1.75;
+  margin-bottom: var(--space-6);
+  max-width: 420px;
+}
+
+/* ---- Lista cech ---- */
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  line-height: 1.4;
+}
+
+.featureDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  flex-shrink: 0;
+}
+
+/* ---- CTA link ---- */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--color-accent-dark);
+  text-decoration: none;
+  border: 1px solid var(--color-accent);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-small);
+  align-self: flex-start;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.cta:hover {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+/* ============================================================
+   DOLNE CTA
+   ============================================================ */
+
+.bottomCta {
+  background: var(--color-bg-secondary);
+  padding-top: 0;
+  padding-bottom: 0;
+  border-top: 1px solid var(--color-border-light);
+}
+
+.bottomCtaInner {
+  text-align: center;
+  padding: clamp(4rem, 8vw, 7rem) 0;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.bottomCtaHeading {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 3.2vw, 3rem);
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+  margin-bottom: var(--space-5);
+}
+
+.bottomCtaText {
+  font-size: var(--font-size-base);
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  margin-bottom: var(--space-8);
+}
+
+.bottomCtaBtn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+  background: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  padding: var(--space-4) var(--space-10);
+  border-radius: var(--radius-small);
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.bottomCtaBtn:hover {
+  background: var(--color-accent-dark);
+  border-color: var(--color-accent-dark);
+}
+
+/* ============================================================
+   RESPONSIVE — TABLET (900px)
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .productRow {
+    grid-template-columns: 1fr;
+    grid-template-areas: "image" "content" !important;
+    min-height: auto;
+  }
+
+  .productImageWrap {
+    aspect-ratio: 16 / 9;
+    position: relative;
+  }
+
+  .productImage {
+    position: absolute;
+  }
+
+  .productNum {
+    font-size: 3rem;
+  }
+
+  .rowReverse .productNum {
+    right: var(--space-4);
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — MOBILE (560px)
+   ============================================================ */
+
+@media (max-width: 560px) {
+  .productImageWrap {
+    aspect-ratio: 4 / 3;
+  }
+
+  .productContent {
+    padding: clamp(1.5rem, 6vw, 2.5rem) clamp(1.5rem, 6vw, 2rem);
+  }
+
+  .productDesc {
+    max-width: 100%;
+  }
+
+  .bottomCtaInner {
+    text-align: left;
+  }
+}

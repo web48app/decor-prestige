@@ -1,5 +1,12 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import './styles/globals.css';
+
+function RouteScrollTop() {
+  const { pathname } = useLocation();
+  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  return null;
+}
 
 /* ---- Landing page ---- */
 import Navbar   from './components/layout/Navbar/Navbar';
@@ -18,6 +25,12 @@ import Contact  from './components/sections/Contact/Contact';
 
 /* ---- Strona kontaktu ---- */
 import ContactPage from './pages/ContactPage/ContactPage';
+
+/* ---- Strona produktów ---- */
+import ProductsPage from './pages/ProductsPage/ProductsPage';
+
+/* ---- Strona realizacji ---- */
+import RealizacjePage from './pages/RealizacjePage/RealizacjePage';
 
 /* ---- UI globalne ---- */
 import ScrollToTop from './components/ui/ScrollToTop/ScrollToTop';
@@ -47,9 +60,12 @@ function HomePage() {
 export default function App() {
   return (
     <>
+      <RouteScrollTop />
       <Routes>
-        <Route path="/"        element={<HomePage />} />
-        <Route path="/kontakt" element={<ContactPage />} />
+        <Route path="/"           element={<HomePage />} />
+        <Route path="/kontakt"    element={<ContactPage />} />
+        <Route path="/produkty"   element={<ProductsPage />} />
+        <Route path="/realizacje" element={<RealizacjePage />} />
       </Routes>
       <ScrollToTop />
     </>

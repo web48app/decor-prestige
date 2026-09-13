@@ -26,8 +26,8 @@ function IconInstagram() {
 const footerNav = [
   { label: 'Strona główna', href: '/#home' },
   { label: 'Oferta',        href: '/#oferta' },
-  { label: 'Dlaczego my?',  href: '/#dlaczego-my' },
-  { label: 'Realizacje',    href: '/#realizacje' },
+  { label: 'Produkty',      href: '/produkty' },
+  { label: 'Realizacje',    href: '/realizacje' },
   { label: 'Kontakt',       href: '/kontakt' },
 ];
 
@@ -45,23 +45,20 @@ export default function Footer() {
 
   const handleNav = (e, href) => {
     e.preventDefault();
-    if (!href.startsWith('/#')) {
-      // zwykła strona np. /kontakt
-      navigate(href);
-      return;
-    }
-    const hash = href.replace('/#', '');
-    if (window.location.pathname === '/') {
-      // jesteśmy na stronie głównej — scrolluj
-      const el = document.getElementById(hash);
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    } else {
-      // inna strona — przenieś na główną z hashem
-      navigate('/');
-      setTimeout(() => {
+    if (href.startsWith('/#')) {
+      const hash = href.replace('/#', '');
+      if (window.location.pathname === '/') {
+        // strona główna — płynny scroll do sekcji
         const el = document.getElementById(hash);
         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 300);
+      } else {
+        // inna strona — pełna nawigacja przeglądarki, sama scrolluje do hasha
+        window.location.href = href;
+      }
+    } else {
+      // zwykła ścieżka np. /kontakt — scroll do góry po nawigacji
+      navigate(href);
+      window.scrollTo({ top: 0, behavior: 'instant' });
     }
   };
 
