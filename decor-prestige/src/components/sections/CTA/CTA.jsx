@@ -44,13 +44,13 @@ export default function CTA() {
           </h2>
 
           <p className={styles.lead}>
-            Umów się na bezpłatny pomiar i indywidualną wycenę.
+            Umów się na pomiar i indywidualną wycenę.
           </p>
 
           {/* Akcje */}
           <div className={styles.actions}>
             <a href={site.contact.phoneHref} className={styles.ctaBtn}>
-              Umów bezpłatny pomiar →
+              Umów wizytę i pomiar →
             </a>
 
             <div className={styles.phoneBlock}>

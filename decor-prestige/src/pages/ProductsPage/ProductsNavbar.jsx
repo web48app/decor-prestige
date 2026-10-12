@@ -58,7 +58,7 @@ export default function ProductsNavbar() {
 
           {/* DESKTOP CTA */}
           <a href="tel:+4866069478" className={styles.cta}>
-            Umów bezpłatny pomiar&nbsp;→
+            Umów wizytę i pomiar&nbsp;→
           </a>
 
           {/* MOBILE BURGER */}
@@ -101,7 +101,7 @@ export default function ProductsNavbar() {
               className={styles.mobileCTA}
               tabIndex={menuOpen ? 0 : -1}
             >
-              Umów bezpłatny pomiar →
+              Umów wizytę i pomiar →
             </a>
           </li>
         </ul>

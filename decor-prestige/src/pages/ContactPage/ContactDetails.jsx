@@ -70,7 +70,7 @@ export default function ContactDetails() {
           </address>
 
           <a href={site.contact.phoneHref} className={styles.detailsBtn}>
-            Umów bezpłatny pomiar →
+            Umów wizytę i pomiar →
           </a>
         </div>
 

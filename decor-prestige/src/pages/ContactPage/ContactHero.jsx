@@ -38,7 +38,7 @@ export default function ContactHero() {
         </h1>
         <p className={styles.heroLead}>
           Z przyjemnością doradzimy, pomożemy dobrać rozwiązania
-          i umówimy się na bezpłatny pomiar u Ciebie.
+          i umówimy się na pomiar u Ciebie.
         </p>
       </div>
     </section>

@@ -78,7 +78,7 @@ export default function Hero() {
               as="a" href="#kontakt" variant="primary"
               onClick={(e) => { e.preventDefault(); scrollTo('kontakt'); }}
             >
-              Umów bezpłatny pomiar&nbsp;→
+              Umów wizytę i pomiar&nbsp;→
             </Button>
             <Button
               as="a" href="#oferta" variant="secondary"

@@ -116,7 +116,7 @@ export default function RealizacjePage() {
                 Chcesz takie dekoracje<br />w swoim wnętrzu?
               </h2>
               <p className={styles.ctaText}>
-                Przyjeżdżamy do klienta — bezpłatny pomiar i doradztwo w całej Małopolsce.
+                Przyjeżdżamy do klienta — pomiar i doradztwo w całej Małopolsce.
               </p>
               <a href="/kontakt" className={styles.ctaBtn}>
                 Umów się na pomiar

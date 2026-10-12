@@ -58,7 +58,7 @@ function ProductSection({ product, index }) {
         </ul>
 
         <a href="/kontakt" className={styles.cta}>
-          Umów bezpłatny pomiar →
+          Umów wizytę i pomiar →
         </a>
       </div>
     </article>
@@ -110,11 +110,11 @@ export default function ProductsPage() {
                 Nie wiesz, które rozwiązanie<br />pasuje do Twojego wnętrza?
               </h2>
               <p className={styles.bottomCtaText}>
-                Przyjeżdżamy do klienta — bezpłatny pomiar i doradztwo
+                Przyjeżdżamy do klienta — pomiar i doradztwo
                 na miejscu, bez zobowiązań.
               </p>
               <a href="/kontakt" className={styles.bottomCtaBtn}>
-                Umów bezpłatny pomiar
+                Umów wizytę i pomiar
               </a>
             </div>
           </Container>

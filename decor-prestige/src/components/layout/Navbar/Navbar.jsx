@@ -75,7 +75,7 @@ export default function Navbar() {
             className={styles.cta}
             onClick={(e) => { e.preventDefault(); handleNav('#kontakt'); }}
           >
-            Umów bezpłatny pomiar&nbsp;→
+            Umów wizytę i pomiar&nbsp;→
           </a>
 
           {/* MOBILE BURGER */}
@@ -119,7 +119,7 @@ export default function Navbar() {
               onClick={(e) => { e.preventDefault(); handleNav('#kontakt'); }}
               tabIndex={menuOpen ? 0 : -1}
             >
-              Umów bezpłatny pomiar →
+              Umów wizytę i pomiar →
             </a>
           </li>
         </ul>
