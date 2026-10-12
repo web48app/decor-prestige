@@ -80,8 +80,8 @@ export default function Services() {
           </div>
           <div className={styles.headerRight}>
             <p className={styles.lead}>
-              Zadbamy o każdy etap – doradzimy, uszyjemy i zamontujemy,
-              abyś mogła cieszyć się pięknymi oknami bez żadnych zmartwień.
+              Zadbamy o każdy etap – doradzimy, uszyjemy i zamontujemy.
+              Ciesz się pięknie zaaranżowanymi oknami bez żadnych zmartwień.
             </p>
           </div>
         </div>
