@@ -6,6 +6,7 @@ import styles from '../../components/layout/Navbar/Navbar.module.css';
 const navItems = [
   { label: 'Usługi',      href: '/#oferta' },
   { label: 'Produkty',    href: '/#produkty', active: true },
+  { label: 'O firmie',    href: '/#o-firmie' },
   { label: 'Dlaczego my', href: '/#dlaczego-my' },
   { label: 'Realizacje',  href: '/realizacje' },
   { label: 'Kontakt',     href: '/kontakt' },
@@ -22,7 +23,7 @@ export default function ProductsNavbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onResize = () => { if (window.innerWidth > 900) setMenuOpen(false); };
+    const onResize = () => { if (window.innerWidth > 1180) setMenuOpen(false); };
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
   }, []);

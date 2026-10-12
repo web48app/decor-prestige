@@ -18,7 +18,7 @@ export default function Navbar() {
 
   // close mobile menu on resize to desktop
   useEffect(() => {
-    const onResize = () => { if (window.innerWidth > 900) setMenuOpen(false); };
+    const onResize = () => { if (window.innerWidth > 1180) setMenuOpen(false); };
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
   }, []);

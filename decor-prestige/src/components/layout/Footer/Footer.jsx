@@ -27,6 +27,7 @@ const footerNav = [
   { label: 'Strona główna', href: '/#start' },
   { label: 'Usługi',        href: '/#oferta' },
   { label: 'Produkty',      href: '/#produkty' },
+  { label: 'O firmie',      href: '/#o-firmie' },
   { label: 'Dlaczego my',   href: '/#dlaczego-my' },
   { label: 'Realizacje',    href: '/realizacje' },
   { label: 'Kontakt',       href: '/kontakt' },
