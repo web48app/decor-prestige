@@ -141,7 +141,7 @@ export default function Footer() {
                   <a href={site.contact.phoneHref} className={styles.contactLink}>
                     {site.contact.phone}
                   </a>
-                  <span className={styles.contactSub}>Pon. – Pt. 8:00 – 17:00</span>
+                  <span className={styles.contactSub}>Pon. – Pt. 10:00 – 17:00</span>
                 </div>
               </div>
 

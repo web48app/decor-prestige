@@ -9,8 +9,6 @@ export const products = [
     features: [
       'Szycie na miarę do każdego okna',
       'Bogaty wybór tkanin i kolorów',
-      'Efektowne fałdowania i plisy',
-      'Montaż w cenie usługi',
     ],
   },
   {
@@ -19,10 +17,9 @@ export const products = [
     image:       '/tkaniny.png',
     alt:         'Tkaniny — DECOR-PRESTIGE',
     shortDesc:   'Starannie dobrane materiały o wyjątkowej jakości i fakturze.',
-    description: 'Podstawą każdej dekoracji okna jest jakość tkaniny. Oferujemy szeroki dobór materiałów — od lekkich woali i organzy, przez gęste welury, po nowoczesne tkaniny techniczne. Pomagamy dobrać fakturę, gramaturę i kolor idealnie pasujący do Twojego wnętrza.',
+    description: 'Oferujemy szeroki wybór wysokiej jakości materiałów — od lekkich woali i subtelnych siatek, przez naturalne tkaniny i materiały inspirowane naturą, eleganckie welury, aż po nowoczesne tkaniny techniczne.',
     features: [
       'Tkaniny od sprawdzonych dostawców',
-      'Próbki dostępne podczas wizyty domowej',
       'Szeroki wybór gramatur i faktur',
       'Materiały łatwe w pielęgnacji',
     ],
@@ -47,12 +44,13 @@ export const products = [
     image:       '/rolety.png',
     alt:         'Rolety — DECOR-PRESTIGE',
     shortDesc:   'Praktyczne i eleganckie — od blackout po transparentne.',
-    description: 'Rolety to jedno z najbardziej wszechstronnych rozwiązań okiennych. Oferujemy rolety zaciemniające (blackout), transparentne, screen i wiele innych typów. Idealnie wpasowują się zarówno w klasyczne, jak i nowoczesne aranżacje.',
+    description: 'Rolety to jedno z najbardziej wszechstronnych rozwiązań okiennych.',
     features: [
-      'Rolety blackout, screen i transparentne',
-      'Kasety ozdobne i prowadnice',
-      'Napędy elektryczne na zamówienie',
-      'Dobór pod kąt padania światła',
+      'Roleta rzymska klasyczna',
+      'Roleta falista',
+      'Roleta duo',
+      'Roleta austriacka',
+      'Roleta wenecka',
     ],
   },
   {
@@ -63,10 +61,9 @@ export const products = [
     shortDesc:   'Dekoracyjne wsporniki, które dopełniają każdą aranżację.',
     description: 'Karnisz to nie tylko element techniczny — to wykończenie, które nadaje oknu finalny charakter. Oferujemy karnisze dekoracyjne, sufitowe i ścienne w różnych materiałach i wykończeniach. Dopasowujemy model do stylu wnętrza i ciężaru tkaniny.',
     features: [
-      'Modele dekoracyjne i sufitowe',
-      'Wykończenia: złoto, srebro, czerń, drewno',
+      'Modele ścienne i sufitowe',
+      'Wykończenia: złoto, srebro, czerń, biel',
       'Karnisze pojedyncze i podwójne',
-      'Montaż i regulacja w cenie',
     ],
   },
 ];
