@@ -68,8 +68,8 @@ export default function Hero() {
           </h1>
 
           <p className={styles.lead}>
-            Tworzymy wyjątkowe dekoracje okien,<br className={styles.brDesktop} />
-            które nadają wnętrzom charakter, podkreślają<br className={styles.brDesktop} />
+            Tworzymy wyjątkowe dekoracje okien,{' '}<br className={styles.brDesktop} />
+            które nadają wnętrzom charakter, podkreślają{' '}<br className={styles.brDesktop} />
             ich styl i tworzą niepowtarzalny klimat.
           </p>
 
