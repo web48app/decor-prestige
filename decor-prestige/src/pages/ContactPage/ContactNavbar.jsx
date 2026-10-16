@@ -68,7 +68,7 @@ export default function ContactNavbar() {
           </ul>
 
           {/* DESKTOP CTA */}
-          <a href="tel:+4866069478" className={styles.cta}>
+          <a href="tel:+48660894784" className={styles.cta}>
             Umów wizytę i pomiar&nbsp;→
           </a>
 
@@ -108,7 +108,7 @@ export default function ContactNavbar() {
           ))}
           <li className={styles.mobileCTAWrap}>
             <a
-              href="tel:+4866069478"
+              href="tel:+48660894784"
               className={styles.mobileCTA}
               tabIndex={menuOpen ? 0 : -1}
             >

@@ -5,9 +5,9 @@ export const site = {
   owner:       'Barbara Charchut',
 
   contact: {
-    phone:        '660 69 478',
-    phoneClean:   '66069478',
-    phoneHref:    'tel:+4866069478',
+    phone:        '660 894 784',
+    phoneClean:   '660894784',
+    phoneHref:    'tel:+48660894784',
     email:        'kontakt@decor-prestige.pl',
     emailHref:    'mailto:kontakt@decor-prestige.pl',
     address: {

@@ -53,5 +53,5 @@ Projekt jest skonfigurowany pod Vercel. Wystarczy połączyć repozytorium z pro
 
 Barbara Charchut  
 ul. Brama Pilzneńska 5, 33-100 Tarnów  
-tel. 660 69 478  
+tel. 660 894 784  
 kontakt@decor-prestige.pl
