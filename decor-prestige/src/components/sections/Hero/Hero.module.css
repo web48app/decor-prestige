@@ -27,6 +27,22 @@
   z-index: 0;
 }
 
+/* ---- Kremowa poświata pod tekstem (mniejsze laptopy) ---- */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to right,
+    rgba(253, 250, 246, 0.92) 0%,
+    rgba(253, 250, 246, 0.84) 32%,
+    rgba(253, 250, 246, 0.50) 46%,
+    rgba(253, 250, 246, 0) 62%
+  );
+}
+
 /* ---- Fade-in ---- */
 .fadeIn {
   opacity: 0;
@@ -51,7 +67,7 @@
 .textCol {
   display: flex;
   flex-direction: column;
-  margin-left: clamp(2rem, 10vw, 10rem);
+  margin-left: clamp(1.5rem, 8vw, 10rem);
   padding-top: clamp(7rem, 11vw, 10rem);
   padding-right: var(--space-6);
   padding-bottom: var(--space-12);
@@ -72,7 +88,7 @@
 
 .heading {
   font-family: var(--font-heading);
-  font-size: clamp(3rem, 5.5vw, 5rem);
+  font-size: clamp(2.8rem, min(5.5vw, 8.5vh), 5rem);
   font-weight: 300;
   line-height: 1.06;
   letter-spacing: -0.02em;
@@ -159,6 +175,14 @@
   font-size: var(--font-size-sm);
   color: #7A7370;
   letter-spacing: 0.04em;
+}
+
+@media (min-width: 1700px) and (min-height: 950px) {
+  .hero::before { opacity: 0.5; }
+}
+
+@media (max-width: 600px) {
+  .hero::before { display: none; }
 }
 
 /* ============================================================
