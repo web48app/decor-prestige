@@ -7,9 +7,15 @@ const IconDiamond = () => (
     <path d="M2.25 9l9.75 13 9.75-13M2.25 9h19.5M2.25 9L7.5 4h9l5.25 5" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 );
-const IconRuler = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" aria-hidden="true" className={styles.icon}>
-    <path d="M3.75 4.5l16.5 16.5M3.75 4.5L1.5 6.75l4.5 4.5 1.5-1.5M20.25 19.5l2.25-2.25-4.5-4.5-1.5 1.5M9 9l6 6" strokeLinecap="round" strokeLinejoin="round"/>
+/* Miarka zwijana */
+const IconTape = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={styles.icon}>
+    <rect x="1" y="3.5" width="15" height="15" rx="4" />
+    <circle cx="8.5" cy="11" r="3.75" />
+    <circle cx="8.5" cy="11" r="0.75" />
+    <path d="M16 14.5h7v4.5h-7" />
+    <path d="M23 12.5v6.5" />
+    <path d="M18.25 14.5v2M20.5 14.5v2" />
   </svg>
 );
 const IconShield = () => (
@@ -26,7 +32,7 @@ const IconHouse = () => (
 
 const USP_ITEMS = [
   { icon: <IconDiamond />, title: 'Indywidualne',  sub: 'podejście' },
-  { icon: <IconRuler />,   title: 'Pomiar',        sub: 'u klienta' },
+  { icon: <IconTape />,    title: 'Pomiar',        sub: 'u klienta' },
   { icon: <IconShield />,  title: 'Sprawdzone',    sub: 'materiały' },
   { icon: <IconHouse />,   title: 'Montaż',        sub: 'i pełna obsługa' },
 ];
