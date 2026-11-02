@@ -33,7 +33,7 @@ function ProductPhoto({ product, className, captionFull = false }) {
     <article className={`${styles.photoItem} ${styles.fadeIn} ${className || ''}`} ref={ref}>
       <div className={styles.imageWrap}>
         <img
-          src={product.image}
+          src={product.homeImage || product.image}
           alt={product.alt}
           className={styles.image}
           loading="lazy"
