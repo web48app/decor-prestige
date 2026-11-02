@@ -84,7 +84,7 @@ export default function ProductsPage() {
                 <em className={styles.heroAccent}>szyte na miarę</em>
               </h1>
               <p className={styles.heroSub}>
-                Zasłony, rolety, plisy i karnisze — dobieramy je indywidualnie
+                Zasłony, rolety, plisy, karnisze i dodatki — dobieramy je indywidualnie
                 do Twojego wnętrza, stylu i potrzeb.
               </p>
             </div>

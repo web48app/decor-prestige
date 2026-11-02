@@ -36,8 +36,8 @@ export default function About() {
           <div className={styles.media}>
             <div className={styles.frame} aria-hidden="true" />
             <img
-              src="/Services/szycie.png"
-              alt="Szycie zasłon na miarę w pracowni DECOR-PRESTIGE"
+              src="/foto/salon.webp"
+              alt="Salon DECOR-PRESTIGE w Tarnowie"
               className={styles.image}
               loading="lazy"
             />

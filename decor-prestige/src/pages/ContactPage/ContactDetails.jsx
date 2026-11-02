@@ -78,8 +78,8 @@ export default function ContactDetails() {
         <div className={styles.detailsMiddle}>
           <div className={styles.workshopWrap}>
             <img
-              src="/deckor_prestige.png"
-              alt="Salon DECOR-PRESTIGE — Tarnów"
+              src="/foto/witryna.webp"
+              alt="Witryna salonu DECOR-PRESTIGE w Tarnowie"
               className={styles.workshopImage}
               loading="lazy"
               onError={(e) => { e.currentTarget.style.display = 'none'; }}
