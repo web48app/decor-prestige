@@ -65,6 +65,21 @@
   color: var(--color-text-muted);
 }
 
+.logoImg {
+  display: block;
+  height: 46px;
+  width: auto;
+  transition: opacity 0.3s ease;
+}
+
+.logo:hover .logoImg {
+  opacity: 0.8;
+}
+
+@media (max-width: 600px) {
+  .logoImg { height: 38px; }
+}
+
 .logo:hover .logoName {
   color: var(--color-accent);
 }

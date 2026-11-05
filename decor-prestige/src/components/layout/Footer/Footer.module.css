@@ -93,6 +93,12 @@
   gap: var(--space-1);
 }
 
+.logoImg {
+  display: block;
+  height: 64px;
+  width: auto;
+}
+
 .logoName {
   font-family: var(--font-heading);
   font-size: clamp(1.1rem, 1.4vw, 1.5rem);

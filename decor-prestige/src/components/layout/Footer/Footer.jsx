@@ -67,8 +67,7 @@ export default function Footer() {
           {/* 1 — Logo + opis + social */}
           <div className={styles.col}>
             <div className={styles.logo}>
-              <span className={styles.logoName}>{site.name}</span>
-              <span className={styles.logoTag}>Dekoracje okien</span>
+              <img src="/logo-decor-prestige.webp" alt={site.name} className={styles.logoImg} width="560" height="193" loading="lazy" />
             </div>
             <p className={styles.desc}>
               Tworzymy dekoracje okien, które nadają wnętrzom charakter,

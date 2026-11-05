@@ -48,8 +48,7 @@ export default function ContactNavbar() {
 
           {/* LOGO */}
           <a href="/" className={styles.logo} aria-label="DECOR-PRESTIGE – strona główna">
-            <span className={styles.logoName}>DECOR-PRESTIGE</span>
-            <span className={styles.logoSub}>DEKORACJE OKIEN</span>
+            <img src="/logo-decor-prestige.webp" alt="DECOR-PRESTIGE" className={styles.logoImg} width="560" height="193" />
           </a>
 
           {/* DESKTOP NAV */}
