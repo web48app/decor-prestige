@@ -1,7 +1,7 @@
 export const site = {
   name:        'DECOR-PRESTIGE',
   tagline:     'Dekoracje okien',
-  description: 'Zasłony, rolety, plisy i karnisze szyte na miarę. Pomiar, szycie, montaż — Tarnów i Małopolska.',
+  description: 'Zasłony, rolety, plisy i karnisze szyte na miarę. Pomiar, szycie i montaż na terenie całej Polski.',
   owner:       'Barbara Charchut',
 
   contact: {
@@ -20,7 +20,7 @@ export const site = {
 
   seo: {
     title:       'DECOR-PRESTIGE | Dekoracje okien Tarnów',
-    description: 'Zasłony, tkaniny, plisy, rolety i karnisze szyte na miarę w Tarnowie. Doradztwo, szycie i montaż na terenie Małopolski. Umów pomiar — Barbara Charchut.',
+    description: 'Zasłony, tkaniny, plisy, rolety i karnisze szyte na miarę. Salon w Tarnowie, doradztwo, szycie i montaż na terenie całej Polski. Umów pomiar — Barbara Charchut.',
   },
 
   nav: [

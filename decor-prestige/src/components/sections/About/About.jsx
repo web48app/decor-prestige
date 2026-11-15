@@ -6,7 +6,7 @@ import styles from './About.module.css';
 const pillars = [
   { title: 'Szycie na miarę',     sub: 'Każda dekoracja dopasowana do okna' },
   { title: 'Doradztwo u klienta', sub: 'Dobór tkanin i rozwiązań na miejscu' },
-  { title: 'Montaż',              sub: 'Tarnów i cała Małopolska' },
+  { title: 'Montaż',              sub: 'Na terenie całej Polski' },
 ];
 
 export default function About() {
@@ -36,8 +36,8 @@ export default function About() {
           <div className={styles.media}>
             <div className={styles.frame} aria-hidden="true" />
             <img
-              src="/foto/salon.webp"
-              alt="Salon DECOR-PRESTIGE w Tarnowie"
+              src="/Services/szycie.png"
+              alt="Szycie zasłon na miarę w pracowni DECOR-PRESTIGE"
               className={styles.image}
               loading="lazy"
             />
@@ -54,7 +54,7 @@ export default function About() {
             <div className={styles.text}>
               <p>
                 {site.name} to pracownia dekoracji okiennych z Tarnowa, prowadzona
-                przez {site.owner}. Tworzymy zasłony, rolety, plisy i karnisze,
+                przez Barbarę Charchut. Tworzymy zasłony, rolety, plisy i karnisze,
                 które nie tylko pięknie wyglądają, ale przede wszystkim pasują
                 do stylu wnętrza i potrzeb domowników.
               </p>
@@ -65,7 +65,7 @@ export default function About() {
                 ostatni montaż masz jedną osobę kontaktową.
               </p>
               <p>
-                Działamy w Tarnowie i na terenie całej Małopolski — w domach,
+                Działamy na terenie całej Polski — w domach,
                 mieszkaniach i biurach.
               </p>
             </div>
