@@ -57,6 +57,17 @@ function ProductSection({ product, index }) {
           ))}
         </ul>
 
+        {product.types && (
+          <div className={styles.typesGrid}>
+            {product.types.map((t) => (
+              <figure key={t.label} className={styles.typeItem}>
+                <img src={t.image} alt={t.label} className={styles.typeImage} loading="lazy" />
+                <figcaption className={styles.typeLabel}>{t.label}</figcaption>
+              </figure>
+            ))}
+          </div>
+        )}
+
         <a href="/kontakt" className={styles.cta}>
           Umów wizytę i pomiar →
         </a>

@@ -339,3 +339,37 @@
     text-align: left;
   }
 }
+
+/* ---- Rodzaje (np. rolet) — zdjęcia własnych realizacji ---- */
+.typesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+  margin: var(--space-6) 0;
+}
+
+.typeItem {
+  margin: 0;
+}
+
+.typeImage {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius-small);
+  background: var(--color-bg-secondary);
+}
+
+.typeLabel {
+  margin-top: var(--space-2);
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+
+@media (max-width: 480px) {
+  .typesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

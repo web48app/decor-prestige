@@ -31,6 +31,7 @@ const footerProducts = [
   { label: 'Plisy',    href: '/#oferta' },
   { label: 'Rolety',   href: '/#oferta' },
   { label: 'Karnisze', href: '/#oferta' },
+  { label: 'Dodatki dekoracyjne', href: '/produkty' },
 ];
 
 export default function Footer() {
