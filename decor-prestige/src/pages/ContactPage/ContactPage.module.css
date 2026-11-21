@@ -736,3 +736,10 @@ a.contactValue:hover {
   color: var(--color-text);
   font-weight: 500;
 }
+
+/* ---- Błąd formularza ---- */
+.formError {
+  font-size: var(--font-size-sm);
+  color: #a0463c;
+  margin: 0 0 var(--space-4);
+}

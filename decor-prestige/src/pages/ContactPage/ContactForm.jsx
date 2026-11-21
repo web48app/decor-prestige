@@ -1,9 +1,16 @@
 import { useState, useEffect, useRef } from 'react';
+import { site } from '../../data/site';
 import styles from './ContactPage.module.css';
+
+/* Klucz Web3Forms (web3forms.com) — ustawiany w Vercel jako VITE_WEB3FORMS_KEY.
+   Wiadomości trafiają na adres e-mail, na który klucz został wygenerowany. */
+const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_KEY;
 
 export default function ContactForm() {
   const ref = useRef(null);
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState('');
   const [form, setForm] = useState({ name: '', phone: '', email: '', message: '' });
 
   useEffect(() => {
@@ -21,9 +28,47 @@ export default function ContactForm() {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSent(true);
+    setError('');
+
+    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
+      setError('Uzupełnij imię, e-mail i treść wiadomości.');
+      return;
+    }
+
+    if (!WEB3FORMS_KEY) {
+      setError(`Formularz chwilowo nie działa — zadzwoń: ${site.contact.phone} lub napisz: ${site.contact.email}`);
+      return;
+    }
+
+    setSending(true);
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `Nowa wiadomość ze strony — ${form.name}`,
+          from_name: 'Strona DECOR-PRESTIGE',
+          name: form.name,
+          phone: form.phone,
+          email: form.email,
+          message: form.message,
+          botcheck: form.botcheck || '',
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setSent(true);
+      } else {
+        throw new Error(data.message);
+      }
+    } catch {
+      setError(`Nie udało się wysłać wiadomości. Zadzwoń: ${site.contact.phone} lub napisz: ${site.contact.email}`);
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -96,8 +141,17 @@ export default function ContactForm() {
               />
             </div>
 
-            <button type="submit" className={styles.formBtn}>
-              Wyślij wiadomość →
+            {/* Pułapka na boty — niewidoczne pole */}
+            <input
+              type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off"
+              style={{ display: 'none' }}
+              onChange={(e) => setForm(prev => ({ ...prev, botcheck: e.target.checked ? 'on' : '' }))}
+            />
+
+            {error && <p className={styles.formError} role="alert">{error}</p>}
+
+            <button type="submit" className={styles.formBtn} disabled={sending}>
+              {sending ? 'Wysyłanie…' : 'Wyślij wiadomość →'}
             </button>
           </form>
         )}

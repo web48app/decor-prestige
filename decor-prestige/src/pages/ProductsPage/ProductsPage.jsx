@@ -118,11 +118,12 @@ export default function ProductsPage() {
           <Container>
             <div className={styles.bottomCtaInner}>
               <h2 className={styles.bottomCtaHeading}>
-                Nie wiesz, które rozwiązanie<br />pasuje do Twojego wnętrza?
+                Nie wiesz, które rozwiązanie najlepiej<br />sprawdzi się w Twoim wnętrzu?
               </h2>
               <p className={styles.bottomCtaText}>
-                Przyjeżdżamy do klienta — pomiar i doradztwo
-                na miejscu, bez zobowiązań.
+                Oferujemy profesjonalną wizytę pomiarowo-doradczą w Twoim domu.
+                Pomożemy dobrać odpowiednie tkaniny, dekoracje okienne oraz
+                rozwiązania dopasowane do charakteru wnętrza.
               </p>
               <a href="/kontakt" className={styles.bottomCtaBtn}>
                 Umów wizytę i pomiar

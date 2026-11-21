@@ -47,11 +47,14 @@ function RealizacjaCard({ item, index }) {
   );
 }
 
+const PAGE_SIZE = 12;
+
 /* ============================================================
    REALIZACJE PAGE
    ============================================================ */
 export default function RealizacjePage() {
   const [activeCategory, setActiveCategory] = useState('wszystkie');
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
   const filtered = activeCategory === 'wszystkie'
     ? realizacje
@@ -91,7 +94,7 @@ export default function RealizacjePage() {
                   role="tab"
                   aria-selected={activeCategory === cat.id}
                   className={`${styles.filterBtn} ${activeCategory === cat.id ? styles.filterActive : ''}`}
-                  onClick={() => setActiveCategory(cat.id)}
+                  onClick={() => { setActiveCategory(cat.id); setVisibleCount(PAGE_SIZE); }}
                 >
                   {cat.label}
                 </button>
@@ -100,10 +103,22 @@ export default function RealizacjePage() {
 
             {/* Siatka */}
             <div className={styles.grid}>
-              {filtered.map((item, i) => (
+              {filtered.slice(0, visibleCount).map((item, i) => (
                 <RealizacjaCard key={item.id} item={item} index={i} />
               ))}
             </div>
+
+            {visibleCount < filtered.length && (
+              <div className={styles.moreWrap}>
+                <button
+                  type="button"
+                  className={styles.moreBtn}
+                  onClick={() => setVisibleCount((n) => n + PAGE_SIZE)}
+                >
+                  Pokaż więcej ({filtered.length - visibleCount})
+                </button>
+              </div>
+            )}
 
           </Container>
         </section>

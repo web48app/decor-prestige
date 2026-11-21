@@ -3,47 +3,9 @@ import { Star, ExternalLink } from 'lucide-react';
 import Container from '../../ui/Container/Container';
 import styles from './Reviews.module.css';
 
-/* Stała URL wizytówki Google — podmień na właściwą */
-const GOOGLE_REVIEW_URL =
-  'https://g.page/r/decor-prestige-tarnow/review';
+import { googleReviews } from '../../../data/reviews';
 
-const REVIEWS = [
-  {
-    id: 1,
-    name: 'Anna Kowalska',
-    rating: 5,
-    date: 'Październik 2024',
-    text: 'Pani Barbara to prawdziwa specjalistka w swoim fachu. Zasłony uszyte na miarę idealnie pasują do naszego salonu. Pomiar, dobór materiału i montaż — wszystko perfekcyjne. Serdecznie polecam!',
-    location: 'Tarnów',
-  },
-  {
-    id: 2,
-    name: 'Marek Wiśniewski',
-    rating: 5,
-    date: 'Sierpień 2024',
-    text: 'Skorzystaliśmy z usług Decor Prestige przy kompletnym urządzaniu sypialni. Firanki i zasłony wyszły fenomenalnie — dokładnie takie, jakich szukaliśmy. Profesjonalna obsługa od początku do końca.',
-    location: 'Tarnów',
-  },
-  {
-    id: 3,
-    name: 'Joanna Nowak',
-    rating: 5,
-    date: 'Czerwiec 2024',
-    text: 'Bardzo polecam! Doradztwo przy wyborze materiałów było rewelacyjne, pani Barbara ma niesamowite wyczucie stylu. Efekt końcowy przerósł nasze oczekiwania. Na pewno wrócimy przy kolejnych projektach.',
-    location: 'Dębica',
-  },
-  {
-    id: 4,
-    name: 'Tomasz Jabłoński',
-    rating: 4,
-    date: 'Marzec 2024',
-    text: 'Bardzo dobra jakość usług i materiałów. Rolety zamontowane terminowo i estetycznie. Widać doświadczenie i dbałość o detale. Zdecydowanie wrócę po więcej.',
-    location: 'Rzeszów',
-  },
-];
-
-const OVERALL_RATING = 4.9;
-const TOTAL_REVIEWS = 47;
+const { reviewUrl, profileUrl, rating, total, items: REVIEWS } = googleReviews;
 
 /* Gwiazdki — obsługuje ułamkowe wartości */
 function Stars({ rating, size = 20 }) {
@@ -92,7 +54,7 @@ function ReviewCard({ review, index }) {
         <span className={styles.authorInitial}>{review.name[0]}</span>
         <div>
           <span className={styles.authorName}>{review.name}</span>
-          <span className={styles.authorLocation}>{review.location}</span>
+          {review.location && <span className={styles.authorLocation}>{review.location}</span>}
         </div>
       </div>
     </article>
@@ -113,6 +75,8 @@ export default function Reviews() {
     return () => io.disconnect();
   }, []);
 
+  if (!REVIEWS.length && !reviewUrl) return null;
+
   return (
     <section id="opinie" className={styles.section} aria-labelledby="reviews-heading">
       <Container>
@@ -126,18 +90,20 @@ export default function Reviews() {
             </h2>
           </div>
 
+          {rating && (
           <div className={styles.headerRight}>
             {/* Ogólna ocena */}
             <div className={styles.overallRating}>
-              <span className={styles.ratingScore}>{OVERALL_RATING.toFixed(1)}</span>
+              <span className={styles.ratingScore}>{rating.toFixed(1)}</span>
               <div className={styles.ratingMeta}>
-                <Stars rating={OVERALL_RATING} size={22} />
+                <Stars rating={rating} size={22} />
                 <span className={styles.ratingCount}>
-                  {TOTAL_REVIEWS} opinii · Google
+                  {total} opinii · Google
                 </span>
               </div>
             </div>
           </div>
+          )}
         </div>
 
         {/* Karty opinii */}
@@ -149,15 +115,18 @@ export default function Reviews() {
 
         {/* CTA */}
         <div className={styles.cta}>
-          <a
-            href={GOOGLE_REVIEW_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.ctaBtn}
-          >
-            Dodaj opinię
-            <ExternalLink size={15} strokeWidth={1.6} />
-          </a>
+          {profileUrl && REVIEWS.length > 0 && (
+            <a href={profileUrl} target="_blank" rel="noopener noreferrer" className={styles.ctaBtn}>
+              Zobacz wszystkie opinie
+              <ExternalLink size={15} strokeWidth={1.6} />
+            </a>
+          )}
+          {reviewUrl && (
+            <a href={reviewUrl} target="_blank" rel="noopener noreferrer" className={styles.ctaBtn}>
+              Wystaw opinię w Google
+              <ExternalLink size={15} strokeWidth={1.6} />
+            </a>
+          )}
         </div>
 
       </Container>
