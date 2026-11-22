@@ -1,11 +1,40 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Star, ExternalLink } from 'lucide-react';
 import Container from '../../ui/Container/Container';
 import styles from './Reviews.module.css';
 
 import { googleReviews } from '../../../data/reviews';
 
-const { reviewUrl, profileUrl, rating, total, items: REVIEWS } = googleReviews;
+const { reviewUrl } = googleReviews;
+
+/* Pobiera opinie z /api/reviews; przy braku konfiguracji używa danych z reviews.js */
+function useGoogleReviews() {
+  const [state, setState] = useState({
+    rating: googleReviews.rating,
+    total: googleReviews.total,
+    profileUrl: googleReviews.profileUrl,
+    items: googleReviews.items,
+  });
+
+  useEffect(() => {
+    let alive = true;
+    fetch('/api/reviews')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (!alive || !d?.ok) return;
+        setState({
+          rating: d.rating,
+          total: d.total,
+          profileUrl: d.mapsUrl || googleReviews.profileUrl,
+          items: d.reviews,
+        });
+      })
+      .catch(() => {});
+    return () => { alive = false; };
+  }, []);
+
+  return state;
+}
 
 /* Gwiazdki — obsługuje ułamkowe wartości */
 function Stars({ rating, size = 20 }) {
@@ -62,6 +91,7 @@ function ReviewCard({ review, index }) {
 }
 
 export default function Reviews() {
+  const { rating, total, profileUrl, items: REVIEWS } = useGoogleReviews();
   const headingRef = useRef(null);
 
   useEffect(() => {
@@ -107,11 +137,17 @@ export default function Reviews() {
         </div>
 
         {/* Karty opinii */}
-        <div className={styles.grid}>
-          {REVIEWS.map((r, i) => (
-            <ReviewCard key={r.id} review={r} index={i} />
-          ))}
-        </div>
+        {REVIEWS.length > 0 ? (
+          <div className={styles.grid}>
+            {REVIEWS.map((r, i) => (
+              <ReviewCard key={r.id} review={r} index={i} />
+            ))}
+          </div>
+        ) : (
+          <p className={styles.emptyText}>
+            Byli Państwo naszymi klientami? Będzie nam miło, jeśli podzielą się Państwo opinią w Google.
+          </p>
+        )}
 
         {/* CTA */}
         <div className={styles.cta}>
