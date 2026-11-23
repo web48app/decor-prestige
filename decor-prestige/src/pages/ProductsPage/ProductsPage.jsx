@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { site } from '../../data/site';
 import { products } from '../../data/products';
 import Container from '../../components/ui/Container/Container';
@@ -6,8 +6,31 @@ import Footer from '../../components/layout/Footer/Footer';
 import ProductsNavbar from './ProductsNavbar';
 import styles from './ProductsPage.module.css';
 
+/* ---- Podgląd zdjęcia na pełnym ekranie ---- */
+function Lightbox({ item, onClose }) {
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === 'Escape') onClose(); };
+    document.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+    };
+  }, [onClose]);
+
+  return (
+    <div className={styles.lightbox} onClick={onClose} role="dialog" aria-modal="true" aria-label={item.label}>
+      <button type="button" className={styles.lightboxClose} onClick={onClose} aria-label="Zamknij">×</button>
+      <figure className={styles.lightboxFigure} onClick={(e) => e.stopPropagation()}>
+        <img src={item.image} alt={item.label} className={styles.lightboxImage} />
+        <figcaption className={styles.lightboxCaption}>{item.label}</figcaption>
+      </figure>
+    </div>
+  );
+}
+
 /* ---- Pojedyncza sekcja produktu ---- */
-function ProductSection({ product, index }) {
+function ProductSection({ product, index, onOpen }) {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -61,7 +84,14 @@ function ProductSection({ product, index }) {
           <div className={styles.typesGrid}>
             {product.types.map((t) => (
               <figure key={t.label} className={styles.typeItem}>
-                <img src={t.image} alt={t.label} className={styles.typeImage} loading="lazy" />
+                <button
+                  type="button"
+                  className={styles.typeButton}
+                  onClick={() => onOpen(t)}
+                  aria-label={`Powiększ: ${t.label}`}
+                >
+                  <img src={t.image} alt={t.label} className={styles.typeImage} loading="lazy" />
+                </button>
                 <figcaption className={styles.typeLabel}>{t.label}</figcaption>
               </figure>
             ))}
@@ -80,9 +110,12 @@ function ProductSection({ product, index }) {
    PRODUKTY PAGE
    ============================================================ */
 export default function ProductsPage() {
+  const [preview, setPreview] = useState(null);
+
   return (
     <>
       <ProductsNavbar />
+      {preview && <Lightbox item={preview} onClose={() => setPreview(null)} />}
 
       <main>
         {/* ---- Hero ---- */}
@@ -107,7 +140,7 @@ export default function ProductsPage() {
           <Container>
             <div className={styles.productsList}>
               {products.map((product, i) => (
-                <ProductSection key={product.id} product={product} index={i} />
+                <ProductSection key={product.id} product={product} index={i} onOpen={setPreview} />
               ))}
             </div>
           </Container>

@@ -5,24 +5,30 @@
    oraz opcjonalnie GOOGLE_PLACE_ID — jeśli jej brak, wizytówka
    jest wyszukiwana po nazwie (PLACE_QUERY). */
 
-const PLACE_QUERY = 'DECOR PRESTIGE Brama Pilzneńska 5 Tarnów';
+const DAY = 60 * 60 * 24;
+const PLACE_QUERY = 'Decor Prestige Tarnów';
+/* Zabezpieczenie: pokazujemy opinie tylko wizytówki, której nazwa zawiera „decor” */
+const NAME_MATCH = /decor/i;
 
-async function findPlaceId(key) {
+async function findPlace(key) {
   const r = await fetch('https://places.googleapis.com/v1/places:searchText', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'X-Goog-Api-Key': key,
-      'X-Goog-FieldMask': 'places.id',
+      'X-Goog-FieldMask': 'places.id,places.displayName,places.formattedAddress',
     },
-    body: JSON.stringify({ textQuery: PLACE_QUERY, languageCode: 'pl', pageSize: 1 }),
+    body: JSON.stringify({ textQuery: PLACE_QUERY, languageCode: 'pl', pageSize: 10 }),
   });
   if (!r.ok) throw new Error(`Google search ${r.status}`);
   const d = await r.json();
-  return d.places?.[0]?.id || null;
+  const places = d.places || [];
+  const hit = places.find((p) => NAME_MATCH.test(p.displayName?.text || ''));
+  return {
+    id: hit?.id || null,
+    candidates: places.map((p) => `${p.displayName?.text} — ${p.formattedAddress}`),
+  };
 }
-
-const DAY = 60 * 60 * 24;
 
 export default async function handler(req, res) {
   const key = process.env.GOOGLE_PLACES_KEY;
@@ -34,8 +40,14 @@ export default async function handler(req, res) {
   }
 
   try {
-    if (!placeId) placeId = await findPlaceId(key);
-    if (!placeId) throw new Error('Nie znaleziono wizytówki');
+    if (!placeId) {
+      const found = await findPlace(key);
+      if (!found.id) {
+        res.setHeader('Cache-Control', 'public, s-maxage=3600');
+        return res.status(200).json({ ok: false, reason: 'not-found', candidates: found.candidates });
+      }
+      placeId = found.id;
+    }
 
     const r = await fetch(
       `https://places.googleapis.com/v1/places/${encodeURIComponent(placeId)}?languageCode=pl`,
@@ -49,6 +61,12 @@ export default async function handler(req, res) {
 
     if (!r.ok) throw new Error(`Google ${r.status}`);
     const data = await r.json();
+
+    /* Nigdy nie pokazuj opinii innej firmy */
+    if (!NAME_MATCH.test(data.displayName?.text || '')) {
+      res.setHeader('Cache-Control', 'public, s-maxage=3600');
+      return res.status(200).json({ ok: false, reason: 'wrong-place', place: data.displayName?.text || null, placeId });
+    }
 
     const reviews = (data.reviews || [])
       .filter((rv) => (rv.text?.text || rv.originalText?.text))
