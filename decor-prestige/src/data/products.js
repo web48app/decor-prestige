@@ -179,6 +179,7 @@ export const realizacje = [
   { id: 'r42', category: 'dodatki', image: '/foto/realizacje/poduszki-kremowe.webp', alt: 'Poduszki kremowo-złote i wiązania', title: 'Poduszki kremowo-złote i wiązania' },
   { id: 'r43', category: 'dodatki', image: '/foto/realizacje/poduszka-liscie.webp', alt: 'Poduszka z motywem liści', title: 'Poduszka z motywem liści' },
   { id: 'r44', category: 'dodatki', image: '/foto/realizacje/poduszka-wiazanie.webp', alt: 'Poduszka i wiązanie do zasłon', title: 'Poduszka i wiązanie do zasłon' },
+  { id: 'r29w', category: 'salon', image: '/foto/salon-witryna.webp', alt: 'Witryna salonu DECOR-PRESTIGE w Tarnowie', title: 'Salon DECOR-PRESTIGE — Brama Pilzneńska 5' },
   { id: 'r30', category: 'salon', image: '/foto/salon-1.webp', alt: 'Salon DECOR-PRESTIGE, Tarnów', title: 'Salon DECOR-PRESTIGE, Tarnów' },
   { id: 'r31', category: 'salon', image: '/foto/salon-2.webp', alt: 'Strefa doradztwa', title: 'Strefa doradztwa' },
   { id: 'r32', category: 'salon', image: '/foto/salon-3.webp', alt: 'Ekspozycja tkanin i karniszy', title: 'Ekspozycja tkanin i karniszy' },

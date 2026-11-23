@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { realizacje, realizacjeCategories } from '../../data/products';
 import Container from '../../components/ui/Container/Container';
 import Footer from '../../components/layout/Footer/Footer';
@@ -6,7 +6,7 @@ import RealizacjeNavbar from './RealizacjeNavbar';
 import styles from './RealizacjePage.module.css';
 
 /* ---- Karta realizacji ---- */
-function RealizacjaCard({ item, index }) {
+function RealizacjaCard({ item, index, onOpen }) {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -26,7 +26,12 @@ function RealizacjaCard({ item, index }) {
       ref={ref}
       style={{ '--card-delay': `${(index % 3) * 0.08}s` }}
     >
-      <div className={styles.cardImageWrap}>
+      <button
+        type="button"
+        className={styles.cardImageWrap}
+        onClick={onOpen}
+        aria-label={`Powiększ: ${item.title}`}
+      >
         <img
           src={item.image}
           alt={item.alt}
@@ -39,11 +44,79 @@ function RealizacjaCard({ item, index }) {
             {realizacjeCategories.find(c => c.id === item.category)?.label}
           </span>
         </div>
-      </div>
+      </button>
       <div className={styles.cardCaption}>
         <span className={styles.cardTitle}>{item.title}</span>
       </div>
     </article>
+  );
+}
+
+/* ---- Podgląd zdjęcia z nawigacją ---- */
+function Lightbox({ items, index, onClose, onNav }) {
+  const item = items[index];
+
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === 'Escape') onClose();
+      if (e.key === 'ArrowRight') onNav(1);
+      if (e.key === 'ArrowLeft') onNav(-1);
+    };
+    document.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+    };
+  }, [onClose, onNav]);
+
+  /* przesuwanie palcem na telefonie */
+  const touchX = useRef(null);
+  const onTouchStart = (e) => { touchX.current = e.touches[0].clientX; };
+  const onTouchEnd = (e) => {
+    if (touchX.current === null) return;
+    const dx = e.changedTouches[0].clientX - touchX.current;
+    if (Math.abs(dx) > 50) onNav(dx < 0 ? 1 : -1);
+    touchX.current = null;
+  };
+
+  if (!item) return null;
+
+  return (
+    <div
+      className={styles.lightbox}
+      onClick={onClose}
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
+      role="dialog"
+      aria-modal="true"
+      aria-label={item.title}
+    >
+      <button type="button" className={styles.lightboxClose} onClick={onClose} aria-label="Zamknij">×</button>
+      {items.length > 1 && (
+        <>
+          <button
+            type="button"
+            className={`${styles.lightboxNav} ${styles.lightboxPrev}`}
+            onClick={(e) => { e.stopPropagation(); onNav(-1); }}
+            aria-label="Poprzednie zdjęcie"
+          >‹</button>
+          <button
+            type="button"
+            className={`${styles.lightboxNav} ${styles.lightboxNext}`}
+            onClick={(e) => { e.stopPropagation(); onNav(1); }}
+            aria-label="Następne zdjęcie"
+          >›</button>
+        </>
+      )}
+      <figure className={styles.lightboxFigure} onClick={(e) => e.stopPropagation()}>
+        <img src={item.image} alt={item.alt} className={styles.lightboxImage} />
+        <figcaption className={styles.lightboxCaption}>
+          {item.title}
+          <span className={styles.lightboxCount}>{index + 1} / {items.length}</span>
+        </figcaption>
+      </figure>
+    </div>
   );
 }
 
@@ -55,14 +128,23 @@ const PAGE_SIZE = 12;
 export default function RealizacjePage() {
   const [activeCategory, setActiveCategory] = useState('wszystkie');
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  const [openIndex, setOpenIndex] = useState(null);
 
   const filtered = activeCategory === 'wszystkie'
     ? realizacje
     : realizacje.filter(r => r.category === activeCategory);
 
+  const navLightbox = useCallback((dir) => {
+    setOpenIndex((i) => (i === null ? i : (i + dir + filtered.length) % filtered.length));
+  }, [filtered.length]);
+  const closeLightbox = useCallback(() => setOpenIndex(null), []);
+
   return (
     <>
       <RealizacjeNavbar />
+      {openIndex !== null && (
+        <Lightbox items={filtered} index={openIndex} onClose={closeLightbox} onNav={navLightbox} />
+      )}
 
       <main>
         {/* ---- Hero ---- */}
@@ -104,7 +186,7 @@ export default function RealizacjePage() {
             {/* Siatka */}
             <div className={styles.grid}>
               {filtered.slice(0, visibleCount).map((item, i) => (
-                <RealizacjaCard key={item.id} item={item} index={i} />
+                <RealizacjaCard key={item.id} item={item} index={i} onOpen={() => setOpenIndex(i)} />
               ))}
             </div>
 
