@@ -132,7 +132,7 @@
 .detailsHeading {
   font-family: var(--font-heading);
   font-size: clamp(1.8rem, 2.5vw, 2.6rem);
-  font-weight: 600;
+  font-weight: 300;
   line-height: 1.15;
   letter-spacing: -0.01em;
   color: var(--color-text);
@@ -176,7 +176,7 @@
 .contactLabel {
   font-family: var(--font-body);
   font-size: var(--font-size-xs);
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--color-taupe);
@@ -185,7 +185,7 @@
 .contactValue {
   font-family: var(--font-body);
   font-size: var(--font-size-base);
-  font-weight: 600;
+  font-weight: 400;
   color: var(--color-text);
   text-decoration: none;
   line-height: 1.5;
@@ -281,7 +281,7 @@ a.contactValue:hover {
 .locationLead {
   font-family: var(--font-body);
   font-size: var(--font-size-sm);
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1.75;
   color: var(--color-text-muted);
 }
@@ -310,7 +310,7 @@ a.contactValue:hover {
 .mapCardName {
   font-family: var(--font-body);
   font-size: var(--font-size-sm);
-  font-weight: 600;
+  font-weight: 500;
   color: var(--color-text);
 }
 
@@ -419,7 +419,7 @@ a.contactValue:hover {
 .ctaHeading {
   font-family: var(--font-heading);
   font-size: clamp(2.6rem, 4vw, 4rem);
-  font-weight: 600;
+  font-weight: 300;
   line-height: 1.08;
   letter-spacing: -0.01em;
   color: var(--color-text);
@@ -428,7 +428,7 @@ a.contactValue:hover {
 .ctaLead {
   font-family: var(--font-body);
   font-size: clamp(1rem, 1.3vw, 1.15rem);
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1.75;
   color: var(--color-text-muted);
 }
@@ -448,7 +448,7 @@ a.contactValue:hover {
   gap: var(--space-4);
   font-family: var(--font-body);
   font-size: clamp(0.9rem, 1.1vw, 1.05rem);
-  font-weight: 600;
+  font-weight: 400;
   color: var(--color-text);
   padding: var(--space-5) 0;
 
@@ -653,7 +653,7 @@ a.contactValue:hover {
 .formLabel {
   font-family: var(--font-body);
   font-size: var(--font-size-xs);
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-taupe);
