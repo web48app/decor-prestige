@@ -78,7 +78,7 @@ export default function ContactDetails() {
         <div className={styles.detailsMiddle}>
           <div className={styles.workshopWrap}>
             <img
-              src="/foto/witryna.webp"
+              src="/foto/witryna-pelna.webp"
               alt="Witryna salonu DECOR-PRESTIGE w Tarnowie"
               className={styles.workshopImage}
               loading="lazy"

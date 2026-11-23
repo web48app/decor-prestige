@@ -36,7 +36,7 @@ export default function About() {
           <div className={styles.media}>
             <div className={styles.frame} aria-hidden="true" />
             <img
-              src="/foto/witryna-front.webp"
+              src="/foto/witryna-pelna.webp"
               alt="Salon DECOR-PRESTIGE w Tarnowie"
               className={styles.image}
               loading="lazy"

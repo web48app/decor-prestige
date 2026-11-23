@@ -23,7 +23,7 @@
 /* ---- Layout ---- */
 .grid {
   display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
   gap: clamp(2.5rem, 6vw, 6rem);
   align-items: center;
 }
@@ -48,9 +48,9 @@
   position: relative;
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1600 / 1048;
   object-fit: cover;
-  object-position: 52% 50%;
+  object-position: center;
   border-radius: var(--radius-small);
   box-shadow: var(--shadow-medium);
 }
@@ -148,7 +148,7 @@
   }
 
   .image {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 1600 / 1048;
   }
 }
 
