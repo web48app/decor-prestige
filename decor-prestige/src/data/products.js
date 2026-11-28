@@ -2,7 +2,7 @@ export const products = [
   {
     id:          'zaslony',
     title:       'Zasłony',
-    image:       '/foto/zaslony.webp',
+    image:       '/foto/zaslony-v2.webp',
     homeImage:   '/zaslony.png',
     alt:         'Zasłony — DECOR-PRESTIGE',
     shortDesc:   'Eleganckie tkaniny, które nadają wnętrzu charakter i ciepło.',
