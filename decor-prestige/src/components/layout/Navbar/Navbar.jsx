@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { site } from '../../../data/site';
 import Container from '../../ui/Container/Container';
 import styles from './Navbar.module.css';
+import InstagramIcon from '../../ui/InstagramIcon/InstagramIcon';
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -67,6 +68,17 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
+
+          {/* INSTAGRAM */}
+          <a
+            href={site.social.instagram}
+            className={styles.insta}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram DECOR-PRESTIGE"
+          >
+            <InstagramIcon />
+          </a>
 
           {/* DESKTOP CTA */}
           <a

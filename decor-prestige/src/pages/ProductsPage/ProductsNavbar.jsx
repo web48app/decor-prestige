@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { site } from '../../data/site';
 import Container from '../../components/ui/Container/Container';
 import styles from '../../components/layout/Navbar/Navbar.module.css';
+import InstagramIcon from '../../components/ui/InstagramIcon/InstagramIcon';
 
 const navItems = [
   { label: 'Usługi',      href: '/#oferta' },
@@ -55,6 +56,17 @@ export default function ProductsNavbar() {
               </li>
             ))}
           </ul>
+
+          {/* INSTAGRAM */}
+          <a
+            href={site.social.instagram}
+            className={styles.insta}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram DECOR-PRESTIGE"
+          >
+            <InstagramIcon />
+          </a>
 
           {/* DESKTOP CTA */}
           <a href="tel:+48660894784" className={styles.cta}>
