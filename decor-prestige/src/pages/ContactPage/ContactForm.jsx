@@ -2,9 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { site } from '../../data/site';
 import styles from './ContactPage.module.css';
 
-/* Klucz Web3Forms (web3forms.com) — ustawiany w Vercel jako VITE_WEB3FORMS_KEY.
-   Wiadomości trafiają na adres e-mail, na który klucz został wygenerowany. */
-const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_KEY;
+/* Wiadomości wysyłane są przez funkcję /api/contact (poczta na serwerze firmy). */
 
 export default function ContactForm() {
   const ref = useRef(null);
@@ -37,20 +35,12 @@ export default function ContactForm() {
       return;
     }
 
-    if (!WEB3FORMS_KEY) {
-      setError(`Formularz chwilowo nie działa — zadzwoń: ${site.contact.phone} lub napisz: ${site.contact.email}`);
-      return;
-    }
-
     setSending(true);
     try {
-      const res = await fetch('https://api.web3forms.com/submit', {
+      const res = await fetch('/api/contact', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          access_key: WEB3FORMS_KEY,
-          subject: `Nowa wiadomość ze strony — ${form.name}`,
-          from_name: 'Strona DECOR-PRESTIGE',
           name: form.name,
           phone: form.phone,
           email: form.email,
@@ -59,7 +49,7 @@ export default function ContactForm() {
         }),
       });
       const data = await res.json();
-      if (data.success) {
+      if (data.ok) {
         setSent(true);
       } else {
         throw new Error(data.message);
