@@ -18,6 +18,10 @@ export const site = {
 
   domain:  'decor-prestige.pl',
 
+  social: {
+    instagram: 'https://www.instagram.com/decorprestige.tarnow/',
+  },
+
   seo: {
     title:       'DECOR-PRESTIGE | Dekoracje okien Tarnów',
     description: 'Zasłony, tkaniny, plisy, rolety i karnisze szyte na miarę. Salon w Tarnowie, doradztwo, szycie i montaż na terenie całej Polski. Umów pomiar — Barbara Charchut.',

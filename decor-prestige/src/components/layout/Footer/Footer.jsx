@@ -75,7 +75,7 @@ export default function Footer() {
               podkreślają ich styl i tworzą niepowtarzalny klimat.
             </p>
             <div className={styles.social}>
-              <a href="#" className={styles.socialLink} aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+              <a href={site.social.instagram} className={styles.socialLink} aria-label="Instagram DECOR-PRESTIGE" target="_blank" rel="noopener noreferrer">
                 <IconInstagram />
               </a>
             </div>

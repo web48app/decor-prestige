@@ -52,7 +52,12 @@ function ProductSection({ product, index, onOpen }) {
       ref={ref}
     >
       {/* Zdjęcie */}
-      <div className={styles.productImageWrap}>
+      <button
+        type="button"
+        className={styles.productImageWrap}
+        onClick={() => onOpen({ image: product.full || product.image, label: product.title })}
+        aria-label={`Powiększ zdjęcie: ${product.title}`}
+      >
         <img
           src={product.image}
           alt={product.alt}
@@ -63,7 +68,7 @@ function ProductSection({ product, index, onOpen }) {
         <div className={styles.productNum} aria-hidden="true">
           {String(index + 1).padStart(2, '0')}
         </div>
-      </div>
+      </button>
 
       {/* Treść */}
       <div className={styles.productContent}>

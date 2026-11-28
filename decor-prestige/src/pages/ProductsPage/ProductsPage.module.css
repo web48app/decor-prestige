@@ -449,3 +449,13 @@
   line-height: 1;
   cursor: pointer;
 }
+
+/* ---- Duże zdjęcie produktu jako przycisk powiększenia ---- */
+button.productImageWrap {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  cursor: zoom-in;
+  text-align: left;
+}
