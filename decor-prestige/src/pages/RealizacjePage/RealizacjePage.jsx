@@ -110,7 +110,7 @@ function Lightbox({ items, index, onClose, onNav }) {
         </>
       )}
       <figure className={styles.lightboxFigure} onClick={(e) => e.stopPropagation()}>
-        <img src={item.image} alt={item.alt} className={styles.lightboxImage} />
+        <img src={item.full || item.image} alt={item.alt} className={styles.lightboxImage} />
         <figcaption className={styles.lightboxCaption}>
           {item.title}
           <span className={styles.lightboxCount}>{index + 1} / {items.length}</span>
